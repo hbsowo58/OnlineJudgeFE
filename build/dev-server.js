@@ -14,7 +14,9 @@ const proxyMiddleware = require('http-proxy-middleware')
 const webpackConfig = require('./webpack.dev.conf')
 
 // default port where dev server listens for incoming traffic
-const port = process.env.PORT || config.dev.port
+//const port = process.env.PORT || config.dev.port
+const port = 80;
+console.log(port);
 // automatically open browser, if not set will be false
 const autoOpenBrowser = !!config.dev.autoOpenBrowser
 // Define HTTP proxies to your custom API backend
@@ -85,13 +87,14 @@ var readyPromise = new Promise((resolve, reject) => {
 var server
 var portfinder = require('portfinder')
 portfinder.basePort = port
-
+console.log(portfinder.basePort)
 console.log('> Starting dev server...')
 devMiddleware.waitUntilValid(() => {
   portfinder.getPort((err, port) => {
     if (err) {
       _reject(err)
     }
+    //console.log(port)	  
     process.env.PORT = port
     var uri = 'http://localhost:' + port
     console.log('> Listening at ' + uri + '\n')
