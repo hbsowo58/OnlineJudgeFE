@@ -11,6 +11,14 @@
         <Icon type="ios-email-outline" slot="prepend"></Icon>
         </Input>
       </FormItem>
+
+      <FormItem prop="studentnumber">
+        <Input v-model="formRegister.studentnumber" :placeholder="$t('m.Studentnumber')" size="large">
+        <Icon type="ios-barcode" slot="prepend"></Icon>
+        </Input>
+      </FormItem>
+
+
       <FormItem prop="password">
         <Input type="password" v-model="formRegister.password" :placeholder="$t('m.RegisterPassword')" size="large" @on-enter="handleRegister">
         <Icon type="ios-locked-outline" slot="prepend"></Icon>
@@ -58,7 +66,7 @@
   import { mapGetters, mapActions } from 'vuex'
   import api from '@oj/api'
   import { FormMixin } from '@oj/components/mixins'
-
+  
   export default {
     mixins: [FormMixin],
     mounted () {
@@ -90,14 +98,12 @@
         }
         callback()
       }
-
       const CheckAgainPassword = (rule, value, callback) => {
         if (value !== this.formRegister.password) {
           callback(new Error(this.$i18n.t('m.password_does_not_match')))
         }
         callback()
       }
-
       return {
         btnRegisterLoading: false,
         formRegister: {
@@ -156,7 +162,6 @@
     },
     computed: {
       ...mapGetters(['website', 'modalStatus'])
-
     }
   }
 </script>
