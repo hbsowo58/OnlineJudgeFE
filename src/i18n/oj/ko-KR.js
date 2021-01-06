@@ -16,6 +16,8 @@ export const m = {
   Score: '점수',
   Tags: '태그',
   Show: '보기',
+  Pick_One: '태그 선택',
+  Reset: '리셋 버튼',
   // About.vue
   Result_Explanation: '결과 설명',
   Pending_Juding: '곧 채점 될 예정입니다. 잠시만 기다려주세요.',
@@ -33,8 +35,13 @@ export const m = {
   Announcements: '공지사항',
   Submissions: '제출',
   Rankings: '랭킹',
-  Overview: 'Overview',
+  Overview: '개요',
   Admin_Helper: 'Admin Helper',
+  StartAt: '시작일',
+  EndAt: '종료일',
+  ContestType: '권한',
+  Creator: '제작자',
+
   // ContestProblemList
   Problems_List: '문제 목록',
 
@@ -102,5 +109,27 @@ export const m = {
   UserHomeserSubmissions: '제출',
   UserHomeScore: '점수',
   List_Solved_Problems: '푼 문제들',
-  UserHomeIntro: '아직 어떠한 문제도 풀지 않았습니다.'
+  UserHomeIntro: '아직 어떠한 문제도 풀지 않았습니다.',
+
+  // ContestList.vue
+  All: '모든',
+  Not_Started: '시작되지 않음',
+  Underway: '진행중',
+  Ended: '시작',
+
+  // Announcements.vue
+  Contest_Announcements: '공지사항',
+
+
+  //
+  AC_Rate: '정답률',
+
+  // SubmissionList.vue
+  When: '제출일',
+  ID: '아이디',
+  Time: '시간',
+  Memory: '메모리',
+  Author: '작성자',
+  Mine: '내것',
+  Search_Author: '작성자를 검색하세요'
 }

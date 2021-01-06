@@ -32,7 +32,7 @@
           </li>
           <li>
             <Input id="keyword" @on-enter="changeRoute" @on-click="changeRoute" v-model="query.keyword"
-                   icon="ios-search-strong" placeholder="Keyword"/>
+                   icon="ios-search-strong" placeholder="키워드를 입력하세요"/>
           </li>
         </ul>
       </div>
@@ -41,6 +41,7 @@
         <li v-for="contest in contests" :key="contest.title">
           <Row type="flex" justify="space-between" align="middle">
             <img class="trophy" src="../../../../assets/Cup.png"/>
+            <!-- 이미지 대체 할부분 -->
             <Col :span="18" class="contest-main">
             <p class="title">
               <a class="entry" @click.stop="goContest(contest)">
