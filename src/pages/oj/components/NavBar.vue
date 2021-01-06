@@ -6,10 +6,12 @@
         <Icon type="home"></Icon>
         {{$t('m.Home')}}
       </Menu-item>
-      <Menu-item name="/problem">
+      
+      <Menu-item name="/problem" v-if="isAdminRole || isSuperAdmin">
         <Icon type="ios-keypad"></Icon>
         {{$t('m.NavProblems')}}
       </Menu-item>
+      
       <Menu-item name="/contest">
         <Icon type="trophy"></Icon>
         {{$t('m.Contests')}}
@@ -18,7 +20,8 @@
         <Icon type="ios-pulse-strong"></Icon>
         {{$t('m.NavStatus')}}
       </Menu-item>
-      <Submenu name="rank">
+      
+      <Submenu name="rank" v-if="isSuperAdmin">
         <template slot="title">
           <Icon type="podium"></Icon>
           {{$t('m.Rank')}}
@@ -30,6 +33,7 @@
           {{$t('m.OI_Rank')}}
         </Menu-item>
       </Submenu>
+
       <Submenu name="about">
         <template slot="title">
           <Icon type="information-circled"></Icon>
@@ -110,7 +114,7 @@
       }
     },
     computed: {
-      ...mapGetters(['website', 'modalStatus', 'user', 'isAuthenticated', 'isAdminRole']),
+      ...mapGetters(['website', 'modalStatus', 'user', 'isAuthenticated', 'isAdminRole', 'isSuperAdmin']),
       // 跟随路由变化
       activeMenu () {
         return '/' + this.$route.path.split('/')[1]

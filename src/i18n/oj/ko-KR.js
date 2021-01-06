@@ -40,9 +40,9 @@ export const m = {
 
   // NavBar.vue
   Home: '홈',
-  NavProblems: '문제',
-  Contests: '대회',
-  NavStatus: '상태',
+  NavProblems: '문제은행',
+  Contests: '문제리스트',
+  NavStatus: '채점결과',
   Rank: '랭킹',
   ACM_Rank: 'ACM 랭킹',
   OI_Rank: 'OI 랭킹',
