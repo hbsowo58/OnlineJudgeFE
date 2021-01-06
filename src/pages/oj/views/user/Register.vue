@@ -13,7 +13,8 @@
       </FormItem>
 
       <FormItem prop="studentnumber">
-        <Input v-model="formRegister.studentnumber" :placeholder="$t('m.Studentnumber')" size="large">
+        <Input v-model="formRegister.studentnumber" :placeholder="$t('m.studentnumber')" size="large"
+        @on-enter="handleRegister">
         <Icon type="ios-barcode" slot="prepend"></Icon>
         </Input>
       </FormItem>
@@ -111,7 +112,8 @@
           password: '',
           passwordAgain: '',
           email: '',
-          captcha: ''
+          captcha: '',
+          studentnumber: ''
         },
         ruleRegister: {
           username: [
@@ -131,6 +133,9 @@
           ],
           captcha: [
             {required: true, trigger: 'blur', min: 1, max: 10}
+          ],
+          studentnumber: [
+            {required: true, trigger: 'blur', min: 1, max: 5}
           ]
         }
       }

@@ -87,7 +87,7 @@ export const m = {
   RegisterPassword: '비밀번호',
   Password_Again: '비밀번호 확인',
   Captcha: 'Captcha',
-  Studentnumber: '사번',
+  studentnumber: '사번',
   UserRegister: '회원가입',
   Already_Registed: '이미 등록하셨나요? 로그인하세요!',
   // ResetPassword.vue and ApplyResetPassword.vue
