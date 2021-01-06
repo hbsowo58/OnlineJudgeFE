@@ -6,17 +6,18 @@
         <Icon type="home"></Icon>
         {{$t('m.Home')}}
       </Menu-item>
-      
-      <Menu-item name="/problem" v-if="isAdminRole || isSuperAdmin">
-        <Icon type="ios-keypad"></Icon>
-        {{$t('m.NavProblems')}}
-      </Menu-item>
-      
+
       <Menu-item name="/contest">
         <Icon type="trophy"></Icon>
         {{$t('m.Contests')}}
       </Menu-item>
-      <Menu-item name="/status">
+      
+      <Menu-item name="/problem" v-if="isSuperAdmin">
+        <Icon type="ios-keypad"></Icon>
+        {{$t('m.NavProblems')}}
+      </Menu-item>
+      
+      <Menu-item name="/status" v-if="isSuperAdmin">
         <Icon type="ios-pulse-strong"></Icon>
         {{$t('m.NavStatus')}}
       </Menu-item>
