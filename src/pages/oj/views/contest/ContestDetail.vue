@@ -42,7 +42,7 @@
         <VerticalMenu-item :disabled="contestMenuDisabled"
                            :route="{name: 'contest-announcement-list', params: {contestID: contestID}}">
           <Icon type="chatbubble-working"></Icon>
-          {{$t('m.Announcements')}}
+          {{$t('m.Contest_Announcements')}}
         </VerticalMenu-item>
 
         <VerticalMenu-item :disabled="contestMenuDisabled"

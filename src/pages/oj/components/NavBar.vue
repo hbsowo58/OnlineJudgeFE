@@ -6,9 +6,34 @@
         <Icon type="home"></Icon>
         {{$t('m.Home')}}
       </Menu-item>
+      
+      <Submenu name="/category" v-if="isSuperAdmin">
+        <template slot="title">
+          <Icon type="ios-list-outline"></Icon>
+          {{$t('m.Category')}}
+        </template>
+        <Menu-item name="/category">
+          {{$t('m.G1_name')}}
+        </Menu-item>
+        <Menu-item name="/category">
+          {{$t('m.G2_name')}}
+        </Menu-item>
+        <Menu-item name="/category">
+          {{$t('m.G3_name')}}
+        </Menu-item>
+        <Menu-item name="/category">
+          {{$t('m.G4_name')}}
+        </Menu-item>
+        <Menu-item name="/category">
+          {{$t('m.G5_name')}}
+        </Menu-item>
+        <Menu-item name="/category">
+          {{$t('m.G6_name')}}
+        </Menu-item>        
+      </Submenu>
 
       <Menu-item name="/contest">
-        <Icon type="trophy"></Icon>
+        <Icon type="person-stalker"></Icon>
         {{$t('m.Contests')}}
       </Menu-item>
       
@@ -37,7 +62,7 @@
 
       <Submenu name="about">
         <template slot="title">
-          <Icon type="information-circled"></Icon>
+          <Icon type="android-bulb"></Icon>
           {{$t('m.About')}}
         </template>
         <Menu-item name="/about">

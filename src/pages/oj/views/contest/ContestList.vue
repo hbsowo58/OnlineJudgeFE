@@ -40,8 +40,7 @@
       <ol id="contest-list">
         <li v-for="contest in contests" :key="contest.title">
           <Row type="flex" justify="space-between" align="middle">
-            <img class="trophy" src="../../../../assets/Cup.png"/>
-            <!-- 이미지 대체 할부분 -->
+            <img class="trophy" src="../../../../assets/SDS.svg"/>
             <Col :span="18" class="contest-main">
             <p class="title">
               <a class="entry" @click.stop="goContest(contest)">
@@ -201,7 +200,7 @@
         list-style: none;
 
         .trophy {
-          height: 40px;
+          width: 80px;
           margin-left: 10px;
           margin-right: -20px;
         }

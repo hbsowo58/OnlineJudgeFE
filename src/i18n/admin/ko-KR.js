@@ -100,5 +100,8 @@ export const m = {
   DashBoardJudge_Server: '채점 서버',
   HTTPS_Status: 'HTTPS 상태',
   Force_HTTPS: '강제 HTTPS',
-  CDN_HOST: 'CDN 호스트'
+  CDN_HOST: 'CDN 호스트',
+
+  //
+  Contest_Announcements: '강사님 코드'
 }
