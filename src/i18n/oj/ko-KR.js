@@ -119,17 +119,13 @@ export const m = {
 
   // Announcements.vue
   Contest_Announcements: '공지사항',
-
-
   //
   AC_Rate: '정답률',
-
   // SubmissionList.vue
   When: '제출일',
   ID: '아이디',
   Time: '시간',
   Memory: '메모리',
   Author: '작성자',
-  Mine: '내것',
-  Search_Author: '작성자를 검색하세요'
+  Mine: '내것'
 }
