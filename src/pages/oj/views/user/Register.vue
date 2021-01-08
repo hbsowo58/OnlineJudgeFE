@@ -30,7 +30,7 @@
         <Icon type="ios-locked-outline" slot="prepend"></Icon>
         </Input>
       </FormItem>
-      <FormItem prop="captcha" style="margin-bottom:10px">
+      <FormItem prop="captcha" style="margin-bottom:20px">
         <div class="oj-captcha">
           <div class="oj-captcha-code">
             <Input v-model="formRegister.captcha" :placeholder="$t('m.Captcha')" size="large" @on-enter="handleRegister">
@@ -58,7 +58,8 @@
         </textarea>
       </div>
 
-      <input type="checkbox" class="agreeCheckbox" v-model="checked">
+      <input type="checkbox" class="agreeCheckbox" prop="agree" v-model="formRegister.agree"
+      @on-enter="handleRegister" />
       <span>약관에 동의합니다</span>
 
     </Form>
@@ -113,8 +114,10 @@
       }
       const CheckPassword = (rule, value, callback) => {
         if (this.formRegister.password !== '') {
-          // 对第二个密码框再次验证
           this.$refs.formRegister.validateField('passwordAgain')
+        }
+        if (this.formRegister.agree !== '') {
+          // this.$refs.formRegister.validateField('AgreeAgain')
         }
         callback()
       }
@@ -170,6 +173,10 @@
       handleRegister () {
         this.validateForm('formRegister').then(valid => {
           let formData = Object.assign({}, this.formRegister)
+          if (formData.agree !== true) {
+            this.$error(this.$i18n.t('약관에 동의하셔야 진행할 수 있습니다'))
+            return
+          }
           delete formData['passwordAgain']
           this.btnRegisterLoading = true
           api.register(formData).then(res => {
@@ -180,6 +187,7 @@
             this.getCaptchaSrc()
             this.formRegister.captcha = ''
             this.btnRegisterLoading = false
+            // this.formRegister.agree = ''
           })
         })
       }
