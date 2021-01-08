@@ -117,11 +117,20 @@
             <Input v-model="formProfile.object"/>
           </Form-item>
 
+
+          <!--
           <FormItem label="주력언어">
             <Select v-model="formProfile.language1">
               <Option v-for="lang in languages1" :key="lang.value" :value="lang.value">{{lang.label}}</Option>
             </Select>
           </FormItem>
+          -->
+
+          <Form-item label="주력언어">
+            <Select v-model="formProfile.language1">
+              <Option v-for="lang in languages1" :key="lang.value" :value="lang.value">{{lang.label}}</Option>
+            </Select>
+          </Form-item>
 
 
         </Col>
@@ -165,7 +174,8 @@
           github: '',
           language: '',
           object: '',
-          birth: ''
+          birth: '',
+          language1: ''
         }
       }
     },

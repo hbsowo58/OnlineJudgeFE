@@ -20,7 +20,7 @@ const languages = [
 ]
 
 const languages1 = [
-  {value: 'c', label: 'c'},
+  {value: 'en-US', label: 'c', iv: ivenUS, el: elenUS},
   {value: 'c++', label: 'c++'},
   {value: 'python', label: 'python'}
 ]

@@ -44,6 +44,23 @@
           </div>
         </div>
       </FormItem>
+
+      <div class="agree">
+        <textarea> [개인정보 보호법] 제21조에 따라 처리합니다.
+예시
+예시
+예시
+예시
+예시
+예시
+예시
+예시
+        </textarea>
+      </div>
+
+      <input type="checkbox" class="agreeCheckbox" v-model="checked">
+      <span>약관에 동의합니다</span>
+
     </Form>
     <div class="footer">
       <Button
@@ -53,12 +70,14 @@
         :loading="btnRegisterLoading">
         {{$t('m.UserRegister')}}
       </Button>
+      <!--
       <Button
         type="ghost"
         @click="switchMode('login')"
         class="btn" long>
         {{$t('m.Already_Registed')}}
       </Button>
+      -->
     </div>
   </div>
 </template>
@@ -172,6 +191,19 @@
 </script>
 
 <style scoped lang="less">
+  .agree{
+    // background:red;
+    textarea{
+      width:100%;
+      height:70px;
+    }
+  }
+
+  .agreeCheckbox{
+    margin-top:5px;
+    transform: scale(1.2);
+  }
+
   .footer {
     overflow: auto;
     margin-top: 20px;
