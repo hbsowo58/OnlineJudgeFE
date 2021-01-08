@@ -66,35 +66,64 @@
     <Form ref="formProfile" :model="formProfile">
       <Row type="flex" :gutter="30" justify="space-around">
         <Col :span="11">
-          <FormItem label="Real Name">
+          <FormItem label="이름">
             <Input v-model="formProfile.real_name"/>
           </FormItem>
-          <Form-item label="School">
+          <Form-item label="사번">
             <Input v-model="formProfile.school"/>
           </Form-item>
-          <Form-item label="Major">
+
+          <Form-item label="전화번호">
             <Input v-model="formProfile.major"/>
           </Form-item>
+
+          <Form-item label="생년월일">
+            <Input v-model="formProfile.birth"/>
+          </Form-item>
+
+          <Form-item label="권한" v-if="isAdminRole || isSuperAdmin">
+            <Input/>
+          </Form-item>
+
+         <!--
           <FormItem label="Language">
             <Select v-model="formProfile.language">
               <Option v-for="lang in languages" :key="lang.value" :value="lang.value">{{lang.label}}</Option>
             </Select>
           </FormItem>
+         -->
+
           <Form-item>
             <Button type="primary" @click="updateProfile" :loading="loadingSaveBtn">Save All</Button>
           </Form-item>
         </Col>
 
         <Col :span="11">
-          <Form-item label="Mood">
+          <Form-item label="주소">
             <Input v-model="formProfile.mood"/>
           </Form-item>
+          
+          <!--
           <Form-item label="Blog">
             <Input v-model="formProfile.blog"/>
           </Form-item>
-          <Form-item label="Github">
+           -->
+
+          <Form-item label="소속">
             <Input v-model="formProfile.github"/>
           </Form-item>
+
+          <Form-item label="목표">
+            <Input v-model="formProfile.object"/>
+          </Form-item>
+
+          <FormItem label="주력언어">
+            <Select v-model="formProfile.language1">
+              <Option v-for="lang in languages1" :key="lang.value" :value="lang.value">{{lang.label}}</Option>
+            </Select>
+          </FormItem>
+
+
         </Col>
       </Row>
     </Form>
@@ -106,7 +135,8 @@
   import utils from '@/utils/utils'
   import {VueCropper} from 'vue-cropper'
   import {types} from '@/store'
-  import {languages} from '@/i18n'
+  import {languages, languages1} from '@/i18n'
+  import { mapGetters } from 'vuex'
 
   export default {
     components: {
@@ -125,14 +155,17 @@
           outputType: 'png'
         },
         languages: languages,
+        languages1: languages1,
         formProfile: {
           real_name: '',
           mood: '',
           major: '',
-          blog: '',
+          // blog: '',
           school: '',
           github: '',
-          language: ''
+          language: '',
+          object: '',
+          birth: ''
         }
       }
     },
@@ -228,6 +261,7 @@
         this.loadingSaveBtn = true
         let updateData = utils.filterEmptyValue(Object.assign({}, this.formProfile))
         api.updateProfile(updateData).then(res => {
+          // console.log(res.data)
           this.$success('Success')
           this.$store.commit(types.CHANGE_PROFILE, {profile: res.data.data})
           this.loadingSaveBtn = false
@@ -237,6 +271,8 @@
       }
     },
     computed: {
+      ...mapGetters(['isAdminRole', 'isSuperAdmin']),
+
       previewStyle () {
         return {
           'width': this.preview.w + 'px',

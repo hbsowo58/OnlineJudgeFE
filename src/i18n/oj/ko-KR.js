@@ -65,7 +65,7 @@ export const m = {
   Check_It: 'Check It',
   // ACMRank.vue
   ACM_Ranklist: 'ACM Ranklist',
-  mood: 'mood',
+  mood: '소속',
   AC: 'AC',
   Rating: 'Rating',
   // Announcements.vue
@@ -213,6 +213,7 @@ export const m = {
   // Register.vue
   RegisterUsername: '아이디',
   Email_Address: 'Email 주소',
+  real_name: '실명',
   RegisterPassword: '비밀번호',
   Password_Again: '비밀번호 확인',
   Captcha: '보안문자',

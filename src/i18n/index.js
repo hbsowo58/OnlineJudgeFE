@@ -18,6 +18,13 @@ const languages = [
   // {value: 'zh-TW', label: '繁體中文', iv: ivzhTW, el: elzhTW},
   {value: 'ko-KR', lable: '한국어', iv: ivkoKR, el: elkoKR}
 ]
+
+const languages1 = [
+  {value: 'c', label: 'c'},
+  {value: 'c++', label: 'c++'},
+  {value: 'python', label: 'python'}
+]
+
 const messages = {}
 
 // combine admin and oj
@@ -34,4 +41,4 @@ export default new VueI18n({
   messages: messages
 })
 
-export {languages}
+export {languages, languages1}
