@@ -4,8 +4,6 @@
 
       <img src="../../../assets/logo_01.svg" class="logo"/>
     
-
-      
       <Menu-item name="/">
         <Icon type="home"></Icon>
         <span class="menu-title">{{$t('m.Home')}}</span>
