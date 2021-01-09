@@ -20,9 +20,9 @@ const languages = [
 ]
 
 const languages1 = [
-  {value: 'en-US', label: 'c', iv: ivenUS, el: elenUS},
-  {value: 'c++', label: 'c++'},
-  {value: 'python', label: 'python'}
+  {value: 'C/C++11', label: 'C/C++11'},
+  {value: 'Java8', label: 'Java8'},
+  {value: 'python3', label: 'Python3'}
 ]
 
 const messages = {}

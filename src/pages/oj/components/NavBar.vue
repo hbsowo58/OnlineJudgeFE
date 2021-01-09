@@ -1,16 +1,20 @@
 <template>
   <div id="header">
     <Menu theme="light" mode="horizontal" @on-select="handleRoute" :active-name="activeMenu" class="oj-menu">
-      <div class="logo"><span>{{website.website_name}}</span></div>
+
+      <img src="../../../assets/logo_01.svg" class="logo"/>
+    
+
+      
       <Menu-item name="/">
         <Icon type="home"></Icon>
-        {{$t('m.Home')}}
+        <span class="menu-title">{{$t('m.Home')}}</span>
       </Menu-item>
       
       <Submenu name="/category" v-if="isSuperAdmin">
         <template slot="title">
           <Icon type="ios-list-outline"></Icon>
-          {{$t('m.Category')}}
+          <span class="menu-title">{{$t('m.Category')}}</span>
         </template>
         <Menu-item name="/category">
           {{$t('m.G1_name')}}
@@ -34,23 +38,23 @@
 
       <Menu-item name="/contest">
         <Icon type="person-stalker"></Icon>
-        {{$t('m.Contests')}}
+        <span class="menu-title">{{$t('m.Contests')}}</span>
       </Menu-item>
       
       <Menu-item name="/problem" v-if="isSuperAdmin">
         <Icon type="ios-keypad"></Icon>
-        {{$t('m.NavProblems')}}
+        <span class="menu-title">{{$t('m.NavProblems')}}</span>
       </Menu-item>
       
       <Menu-item name="/status" v-if="isSuperAdmin">
         <Icon type="ios-pulse-strong"></Icon>
-        {{$t('m.NavStatus')}}
+        <span class="menu-title">{{$t('m.NavStatus')}}</span>
       </Menu-item>
       
       <Submenu name="rank" v-if="isSuperAdmin">
         <template slot="title">
           <Icon type="podium"></Icon>
-          {{$t('m.Rank')}}
+          <span class="menu-title">{{$t('m.Rank')}}</span>
         </template>
         <Menu-item name="/acm-rank">
           {{$t('m.ACM_Rank')}}
@@ -63,7 +67,7 @@
       <Submenu name="about">
         <template slot="title">
           <Icon type="android-bulb"></Icon>
-          {{$t('m.About')}}
+          <span class="menu-title">{{$t('m.About')}}</span>
         </template>
         <Menu-item name="/about">
           {{$t('m.Judger')}}
@@ -168,16 +172,26 @@
     z-index: 1000;
     background-color: #fff;
     box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1);
+
     .oj-menu {
       background: #fdfdfd;
+      .menu-title{
+        // background:red;
+        font-size:16px;
+      }
     }
 
     .logo {
-      margin-left: 2%;
-      margin-right: 2%;
-      font-size: 20px;
+      // margin-left: 2%;
+      // margin-right: 2%;
+      // font-size: 20px;
+      // display:block;
+      // height:20px;
+      padding:14px 7px;
       float: left;
-      line-height: 60px;
+      margin:0px auto;
+      // background:red;
+      // line-height: 60px;
     }
 
     .drop-menu {
