@@ -222,7 +222,7 @@ export const m = {
   The_username_already_exists: '아이디가 이미 존재합니다.',
   The_email_already_exists: 'Email 주소가 이미 존재합니다.',
   password_does_not_match: '비밀번호가 일치하지 않습니다.',
-  Thanks_for_registering: '회원가입 되었습니다. 관리자 인증 후 로그인이 가능합니다.',
+  Thanks_for_registering: '회원가입에 성공하였습니다.',
   // ResetPassword.vue and ApplyResetPassword.vue
   Reset_Password: '비밀번호 찾기',
   RPassword: 'Password',

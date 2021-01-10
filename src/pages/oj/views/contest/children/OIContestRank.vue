@@ -112,7 +112,7 @@
             trigger: 'axis'
           },
           toolbox: {
-            show: true,
+            show: false,
             feature: {
               dataView: {show: true, readOnly: true},
               magicType: {show: true, type: ['line', 'bar']},

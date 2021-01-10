@@ -1,22 +1,8 @@
 <template>
   <div>
-  <NavBar></NavBar>
-
-    <div class="visual">
-      <span class="test">세 가지를 꼭 지켜주세요.</span>
-
-      <span class="test1">
-      하나, 모든 소스코드는 처음부터 작성하기
-      <br>
-      두울, Trace로 끝가지 버그 잡아내기
-      <br>
-      세엣, 질문은 적극적이고 구체적으로
-      </span>
-      <img src="../../assets/visualimage.jpg"/>
-    </div>
+    <NavBar></NavBar>
     <div class="content-app">
-    
-    <transition name="fadeInUp" mode="out-in">
+      <transition name="fadeInUp" mode="out-in">
         <router-view></router-view>
       </transition>
       <div class="footer">
@@ -83,29 +69,6 @@
     background-color: transparent;
     &:active, &:hover {
       outline-width: 0;
-    }
-  }
-
-  .visual{
-    // background:red;
-    // width:100%;
-    // text-align:center;
-    .test{
-      top:250px;
-      left:200px;
-      font-size:20px;
-      // z-inedx:10px;
-      position:absolute;
-    }
-    .test1{
-      font-size:20px;
-      // z-inedx:10px;
-      position:absolute;
-      top:300px;
-      left:200px;
-    }
-    img{
-      width:100%;
     }
   }
 

@@ -10,10 +10,10 @@ export const m = {
   Problem: '문제',
   Problem_List: '문제 목록',
   Create_Problem: '문제 만들기',
-  Export_Import_Problem: '문제 가져오기 및 내보내기',
-  Contest: '대회',
-  Contest_List: '대회 목록',
-  Create_Contest: '대회 생성하기',
+  Export_Import_Problem: 'Export/Import',
+  Contest: '기업강의',
+  Contest_List: '기업강의 목록',
+  Create_Contest: '강의 생성하기',
   // User.vue
   User_User: '사용자',
   Import_User: '사용자 가져오기',
@@ -103,5 +103,32 @@ export const m = {
   CDN_HOST: 'CDN 호스트',
 
   //
-  Contest_Announcements: '강사님 코드'
+  Contest_Announcements: '강사님 코드',
+
+  // NavBar.vue
+  Home: 'Home',
+  Category: '문제리스트',
+  NavProblems: '문제은행',
+  Contests: '기업강의',
+  NavStatus: '채점결과',
+  Rank: '랭킹',
+  ACM_Rank: 'ACM 랭킹',
+  OI_Rank: 'OI 랭킹',
+  About: '읽어보세요',
+  G1_name: '[G1] 시작반 1',
+  G2_name: '[G2] 시작반 2',
+  G3_name: '[G3] 훈련반 1',
+  G4_name: '[G4] 훈련반 2',
+  G5_name: '[G5] 심화반 1',
+  G6_name: '[G6] 심화반 2',
+  Judger: '채점 시스템',
+  FAQ: 'FAQ',
+  Login: '로그인',
+  Register: '회원가입',
+  MyHome: 'My홈',
+  MySubmissions: 'My채점결과',
+  Settings: '내 정보수정',
+  Management: '관리자페이지',
+  Logout: '로그아웃',
+  Welcome_to: 'Welcome to'
 }

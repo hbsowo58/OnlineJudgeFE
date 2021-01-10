@@ -73,6 +73,7 @@
             <Input v-model="formProfile.school"/>
           </Form-item>
 
+          <!--
           <Form-item label="전화번호">
             <Input v-model="formProfile.major"/>
           </Form-item>
@@ -80,6 +81,7 @@
           <Form-item label="생년월일">
             <Input v-model="formProfile.birth"/>
           </Form-item>
+          -->
 
           <Form-item label="권한" v-if="isAdminRole || isSuperAdmin">
             <Input/>
@@ -99,19 +101,22 @@
         </Col>
 
         <Col :span="11">
+
+          <!--
           <Form-item label="주소">
             <Input v-model="formProfile.mood"/>
           </Form-item>
           
-          <!--
+
           <Form-item label="Blog">
             <Input v-model="formProfile.blog"/>
           </Form-item>
-           -->
 
           <Form-item label="소속">
             <Input v-model="formProfile.github"/>
           </Form-item>
+
+          -->
 
           <Form-item label="목표">
             <Input v-model="formProfile.object"/>
@@ -175,7 +180,7 @@
           language: '',
           object: '',
           birth: '',
-          language1: ''
+          language1: 'C/C++11'
         }
       }
     },

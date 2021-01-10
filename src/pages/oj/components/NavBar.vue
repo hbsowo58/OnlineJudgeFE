@@ -2,13 +2,17 @@
   <div id="header">
     <Menu theme="light" mode="horizontal" @on-select="handleRoute" :active-name="activeMenu" class="oj-menu">
 
+      <Menu-item name="/">
       <img src="../../../assets/logo_01.svg" class="logo"/>
-    
+      </Menu-item>
+
+      <!-- 
       <Menu-item name="/">
         <Icon type="home"></Icon>
         <span class="menu-title">{{$t('m.Home')}}</span>
       </Menu-item>
-      
+      -->
+
       <Submenu name="/category" v-if="isSuperAdmin">
         <template slot="title">
           <Icon type="ios-list-outline"></Icon>
@@ -39,10 +43,13 @@
         <span class="menu-title">{{$t('m.Contests')}}</span>
       </Menu-item>
       
+
+      <!--
       <Menu-item name="/problem" v-if="isSuperAdmin">
         <Icon type="ios-keypad"></Icon>
         <span class="menu-title">{{$t('m.NavProblems')}}</span>
       </Menu-item>
+      -->
       
       <Menu-item name="/status" v-if="isSuperAdmin">
         <Icon type="ios-pulse-strong"></Icon>
@@ -97,6 +104,7 @@
           <Dropdown-menu slot="list">
             <Dropdown-item name="/user-home">{{$t('m.MyHome')}}</Dropdown-item>
             <Dropdown-item name="/status?myself=1" v-if="isAdminRole || isSuperAdmin">{{$t('m.MySubmissions')}}</Dropdown-item>
+            <Dropdown-item name="/problem" v-if="isSuperAdmin">{{$t('m.NavProblems')}}</Dropdown-item>
             <Dropdown-item name="/setting/profile">{{$t('m.Settings')}}</Dropdown-item>
             <Dropdown-item v-if="isAdminRole" name="/admin">{{$t('m.Management')}}</Dropdown-item>
             <Dropdown-item divided name="/logout">{{$t('m.Logout')}}</Dropdown-item>

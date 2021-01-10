@@ -106,12 +106,12 @@
               return h('span', time.utcToLocal(params.row.end_time))
             }
           },
-          {
-            title: this.$i18n.t('m.ContestType'),
-            render: (h, params) => {
-              return h('span', this.$i18n.t('m.' + params.row.contest_type.replace(' ', '_')))
-            }
-          },
+          // {
+          //   title: this.$i18n.t('m.ContestType'),
+          //   render: (h, params) => {
+          //     return h('span', this.$i18n.t('m.' + params.row.contest_type.replace(' ', '_')))
+          //   }
+          // },
           {
             title: this.$i18n.t('m.Rule'),
             render: (h, params) => {

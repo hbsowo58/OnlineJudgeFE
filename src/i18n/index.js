@@ -35,6 +35,7 @@ for (let lang of languages) {
   let ui = Object.assign(lang.iv, lang.el)
   messages[locale] = Object.assign({m: m}, ui)
 }
+
 // load language packages
 export default new VueI18n({
   locale: 'ko-KR',

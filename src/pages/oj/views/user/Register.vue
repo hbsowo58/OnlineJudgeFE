@@ -190,7 +190,7 @@
         this.validateForm('formRegister').then(valid => {
           let formData = Object.assign({}, this.formRegister)
           if (formData.agree !== true) {
-            this.$error(this.$i18n.t('약관에 동의하셔야 진행할 수 있습니다'))
+            this.$error(this.$i18n.t('약관에 동의를 해주세요.'))
             return
           }
           delete formData['passwordAgain']

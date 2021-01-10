@@ -1,6 +1,23 @@
 <template>
   <Row type="flex" justify="space-around">
     <Col :span="22">
+    <div class="visual">
+      <span class="visual_title">세 가지를 꼭 지켜주세요.</span>
+
+      <span class="visual_content">
+      하나, 모든 소스코드는 처음부터 작성하기
+      <br>
+      두울, Trace로 끝가지 버그 잡아내기
+      <br>
+      세엣, 질문은 적극적이고 구체적으로
+      </span>
+      <img src="../../../../assets/visualimage.jpg"/>
+    </div>
+
+    <Announcements class="announcement"></Announcements>
+    <br>
+    
+    <!-- 3차수 ~~ -->
     <panel shadow v-if="contests.length" class="contest">
       <div slot="title">
         <Button type="text"  class="contest-title" @click="goContest">{{contests[index].title}}</Button>
@@ -26,7 +43,6 @@
         </CarouselItem>
       </Carousel>
     </panel>
-    <Announcements class="announcement"></Announcements>
     </Col>
   </Row>
 </template>
@@ -82,7 +98,30 @@
     }
   }
 
+    .visual{
+    // background:red;
+    width:100%;
+    // text-align:center;
+    .visual_title{
+      top:250px;
+      left:200px;
+      font-size:20px;
+      // z-inedx:10px;
+      position:absolute;
+    }
+    .visual_content{
+      font-size:20px;
+      // z-inedx:10px;
+      position:absolute;
+      top:300px;
+      left:200px;
+    }
+    img{
+      width:100%;
+    }
+  }
+
   .announcement {
-    margin-top: 20px;
+    margin-bottom:30px;
   }
 </style>
