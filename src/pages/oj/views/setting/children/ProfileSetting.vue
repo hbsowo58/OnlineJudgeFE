@@ -74,8 +74,8 @@
             <Input v-model="formProfile.school"/>
           </Form-item>
 
-          <Form-item label="Email">
-            <Input v-model="major" :disabled = "true"/>
+          <Form-item label="목표">
+            <Input v-model="formProfile.object"/>
           </Form-item>
 
           <!--
@@ -123,8 +123,8 @@
 
           -->
 
-          <Form-item label="목표">
-            <Input v-model="formProfile.object"/>
+          <Form-item label="Email">
+            <Input v-model="major" :disabled = "true"/>
           </Form-item>
 
 

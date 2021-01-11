@@ -39,12 +39,7 @@
           </template>
         </el-table-column>
 
-        <!--
         <el-table-column prop="real_name" label="Real Name"></el-table-column>
-        -->
-        <el-table-column prop="real_name" label="이름"></el-table-column>
-        
-        <el-table-column prop="studnetnumber" label="사번"></el-table-column>
 
         <el-table-column prop="email" label="Email"></el-table-column>
 
@@ -254,7 +249,6 @@
   import papa from 'papaparse'
   import api from '../../api.js'
   import utils from '@/utils/utils'
-
   export default {
     name: 'User',
     data () {
@@ -425,11 +419,9 @@
     color: #555555;
     margin-left: 4px;
   }
-
   .userPreview {
     padding-left: 10px;
   }
-
   .notification {
     p {
       margin: 0;

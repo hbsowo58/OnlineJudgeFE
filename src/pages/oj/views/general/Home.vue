@@ -2,7 +2,7 @@
   <div class="t">
     <div class="visual">
       <span class="visual_title">
-      <span>세 가지</span>를 꼭 지켜주세요.
+        <span class="visual_test">세 가지</span>를 꼭 지켜주세요.
       </span>
   
       <span class="visual_content">
@@ -12,14 +12,12 @@
       <br>
       세엣, 질문은 적극적이고 구체적으로
       </span>
-      <img src="../../../../assets/visualimage.jpg"/>
-      </div>
+      <div class="test"></div>
+    </div>
   <Row type="flex" justify="space-around">
   <Col :span="22">
-  <Announcements class="announcement"></Announcements>
   <br>
   
-  <!-- 3차수
   <panel shadow v-if="contests.length" class="contest">
   <div slot="title">
   <Button type="text"  class="contest-title" @click="goContest">{{contests[index].title}}</Button>
@@ -45,9 +43,10 @@
   </CarouselItem>
   </Carousel>
   </panel>
-  -->
-  </Col>
-  </Row></div>
+   <Announcements class="announcement"></Announcements>
+    </Col>
+  </Row>
+  </div>
 </template>
 
 <script>
@@ -55,7 +54,7 @@
   import api from '@oj/api'
   import time from '@/utils/time'
   import { CONTEST_STATUS } from '@/utils/constants'
-
+  
   export default {
     name: 'home',
     components: {
@@ -87,6 +86,7 @@
   }
 </script>
 <style lang="less" scoped>
+
   .contest {
     &-title {
       font-style: italic;
@@ -101,29 +101,41 @@
   }
 
   .visual{
-    margin-bottom:80px;
-    .visual_title{
-    top:300px;
-    left:200px;
-    font-size:20px;
-    // z-inedx:10px;
-    position:absolute;
+    margin-bottom:40px;
     font-family: 'Noto Sans KR', sans-serif;
+    font-weight:300;
+    .visual_title{
+    top:220px;
+    left:200px;
+    position:absolute;
+    .visual_test{
+      font-size:39px;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-weight:500;
+    }
+    font-size:39px;
    }
   .visual_content{
-    font-size:20px;
+    font-size:21px;
     // z-inedx:10px;
     position:absolute;
-    top:350px;
+    top:335px;
     left:200px;
-     font-family: 'Noto Sans KR', sans-serif;
    }
-   img{
-     width:100%;
+  //  img{
+  //    height:460px;
+  //  }
+   .test{
+     height:60vh;
+     width:auto;
+     background-image:url("../../../../assets/pro_visual.jpg");
+     background-size: cover;
+     background-position:center center;
+     background-repeat: no-repeat;
    }
   }
 
   .announcement {
-    margin-bottom:30px;
+    margin-top:60px;
   }
 </style>

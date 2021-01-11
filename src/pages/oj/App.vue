@@ -6,10 +6,14 @@
         <router-view></router-view>
       </transition>
       <div class="footer">
+        <!--
         <p v-html="website.website_footer"></p>
+        -->
+        <p>&copy; 2020 MINCODING ALL RIGHTS RESERVED</p>
+        <!--
         <p>Powered by <a href="https://github.com/QingdaoU/OnlineJudge"></a>
           <span v-if="version">&nbsp; Version: {{ version }}</span>
-        </p>
+        -->
       </div>
     </div>
     <BackTop></BackTop>
@@ -75,7 +79,7 @@
 
   @media screen and (max-width: 1200px) {
   .content-app {
-    margin-top: 160px;
+  margin-top: 160px;
     padding: 0 2%;
   }
 }

@@ -17,7 +17,7 @@
 
       <Submenu name="/category" v-if="isSuperAdmin">
         <template slot="title">
-          <Icon type="ios-list-outline"></Icon>
+          <Icon type="ios-list-outline" style="margin-left:-2px"></Icon>
           <span class="menu-title">{{$t('m.Category')}}</span>
         </template>
         <Menu-item name="/category">
@@ -190,11 +190,15 @@
         // background:red;
         font-size:16px;
         font-family: 'Noto Sans KR', sans-serif;
+        letter-spacing:-1px;
+        margin-left:-7px;
       }
       .logo {
         margin-left:80px;
         padding-top:10px;
         padding-left:0px;
+        padding-right:0px;
+        margin-right:40px;
         .logoImage{
           width:80px;
           height:30px;

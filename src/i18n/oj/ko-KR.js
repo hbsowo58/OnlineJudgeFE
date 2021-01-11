@@ -10,7 +10,7 @@ export const m = {
   Hint: 'Hint',
   Source: '소스코드',
   Status: 'Status',
-  Information: 'Information',
+  Information: '문제정보',
   Time_Limit: 'Time Limit',
   Memory_Limit: 'Memory Limit',
   Created: 'Created By',
@@ -22,7 +22,7 @@ export const m = {
   Submitting: '전송중...',
   Judging: '채점중...',
   Wrong_Answer: '오답',
-  Statistic: 'Statistic',
+  Statistic: '정답률',
   Close: 'Close',
   View_Contest: 'View Contest',
   Are_you_sure_you_want_to_reset_your_code: 'Are you sure you want to reset your code?',
@@ -109,7 +109,7 @@ export const m = {
   // Cancel.vue
   Cancel: 'Cancel',
   // ContestDetail.vue
-  Problems: 'Problems',
+  Problems: '문제목록',
   Announcements: '공지사항',
   Submissions: '채점결과',
   Rankings: '랭킹',
