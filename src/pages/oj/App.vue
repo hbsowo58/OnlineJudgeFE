@@ -75,19 +75,25 @@
       outline-width: 0;
     }
   }
+  .content-app{
+    padding-top: 60px;
+  }
 
-
-  @media screen and (max-width: 1200px) {
+// .content-app{
+//     margin-top: 160px;
+//     padding: 0 2%;
+// }
+@media screen and (max-width: 1200px) {
   .content-app {
-  margin-top: 160px;
+    margin-top: 160px;
     padding: 0 2%;
   }
 }
 
 @media screen and (min-width: 1200px) {
   .content-app {
-    margin-top: 60px;
-    // padding: 0 2%;
+     margin-top: 60px;
+     padding: 0 2%;
   }
 }
 

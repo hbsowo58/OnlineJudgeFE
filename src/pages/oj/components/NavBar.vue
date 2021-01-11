@@ -71,7 +71,7 @@
         </Menu-item>
       </Submenu>
 
-      <Submenu name="about">
+      <Submenu name="about" class="about">
         <template slot="title">
           <Icon type="android-bulb"></Icon>
           <span class="menu-title">{{$t('m.About')}}</span>
@@ -189,7 +189,7 @@
       .menu-title{
         // background:red;
         font-size:16px;
-        font-family: 'Noto Sans KR', sans-serif;
+        // font-family: 'Noto Sans KR', sans-serif;
         letter-spacing:-1px;
         margin-left:-7px;
       }
@@ -204,7 +204,7 @@
           height:30px;
           font-size:16px;
         }
-    }
+      }
     }
 
     .drop-menu {
@@ -229,4 +229,10 @@
       font-weight: 600;
     }
   }
+
+  // @media screen and (max-width: 1200px) {
+  //   .about{
+  //     display:none;
+  //   }
+  // }
 </style>

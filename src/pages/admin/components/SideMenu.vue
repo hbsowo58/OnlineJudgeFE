@@ -5,7 +5,7 @@
       <img src="../../../assets/logo.svg" alt="oj admin"/>
     </div>
           
-    <el-menu-item index=""><i class="el-icon-fa-home"></i>{{$t('m.Home')}}</el-menu-item>
+    <el-menu-item index="//"><i class="el-icon-fa-home"></i>{{$t('m.Home')}}</el-menu-item>
     
     <el-menu-item index="/"><i class="el-icon-fa-dashboard"></i>{{$t('m.Dashboard')}}</el-menu-item>
     <el-submenu v-if="isSuperAdmin" index="general">

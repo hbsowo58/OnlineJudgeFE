@@ -67,15 +67,15 @@
       <Row type="flex" :gutter="30" justify="space-around">
         <Col :span="11">
           <FormItem label="이름">
-            <Input v-model="userProfileName" :disabled = "true"/>
+            <Input v-model="formProfile.real_name" :disabled = "true"/>
           </FormItem>
 
           <Form-item label="사번">
-            <Input v-model="formProfile.school"/>
+            <Input v-model="formProfile.school" placeholder="회사 사번을 적어주세요. (필수)"/>
           </Form-item>
 
           <Form-item label="목표">
-            <Input v-model="formProfile.object"/>
+            <Input v-model="formProfile.mood" placeholder="한 마디 각오를 적어주세요."/>
           </Form-item>
 
           <!--
@@ -86,13 +86,12 @@
           <Form-item label="생년월일">
             <Input v-model="formProfile.birth"/>
           </Form-item>
-          -->
+          
 
           <Form-item label="권한" v-if="isAdminRole || isSuperAdmin">
             <Input/>
           </Form-item>
-
-         <!--
+          
           <FormItem label="Language">
             <Select v-model="formProfile.language">
               <Option v-for="lang in languages" :key="lang.value" :value="lang.value">{{lang.label}}</Option>
@@ -124,7 +123,7 @@
           -->
 
           <Form-item label="Email">
-            <Input v-model="major" :disabled = "true"/>
+            <Input v-model="email" :disabled = "true"/>
           </Form-item>
 
 
@@ -135,10 +134,9 @@
             </Select>
           </FormItem>
           -->
-
           <Form-item label="주력언어">
-            <Select v-model="formProfile.language1">
-              <Option v-for="lang in languages1" :key="lang.value" :value="lang.value">{{lang.label}}</Option>
+            <Select v-model="formProfile.major">
+              <Option v-for="m in majors" :key="m" :value="m">{{m}}</Option>
             </Select>
           </Form-item>
 
@@ -154,7 +152,7 @@
   import utils from '@/utils/utils'
   import {VueCropper} from 'vue-cropper'
   import {types} from '@/store'
-  import {languages, languages1} from '@/i18n'
+  import {languages} from '@/i18n'
   import { mapGetters } from 'vuex'
 
   export default {
@@ -174,38 +172,31 @@
           outputType: 'png'
         },
         languages: languages,
-        languages1: languages1,
+        majors: ['C/C++', 'Java', 'Python3'],
         formProfile: {
           real_name: '',
           mood: '',
           // blog: '',
+          major: '',
           school: '',
           github: '',
           language: '',
-          object: '',
-          birth: '',
-          language1: 'C/C++11'
+          birth: ''
         },
-        userProfileName: '',
-        major: ''
+        // userProfileName: '',
+        email: ''
+
       }
     },
     mounted () {
       let profile = this.$store.state.user.profile
 
-      const userProfileNam1 = Object.entries(profile['user']).filter(el => {
-        if (el[0] === 'userProfileName') {
-          return el[1]
-        }
-      })
-      this.userProfileName = userProfileNam1[0][1]
-
-      const userProfileEmail1 = Object.entries(profile['user']).filter(el => {
+      const userProfileEmail = Object.entries(profile['user']).filter(el => {
         if (el[0] === 'email') {
           return el[1]
         }
       })
-      this.major = userProfileEmail1[0][1]
+      this.email = userProfileEmail[0][1]
 
       Object.keys(this.formProfile).forEach(element => {
         if (profile[element] !== undefined) {

@@ -55,6 +55,7 @@
 }
 body {
   background: #f8f8f9;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 
 #app-loader {

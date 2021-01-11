@@ -13,9 +13,9 @@
       </FormItem>
 
       <FormItem prop="userProfileName">
-        <Input v-model="formRegister.userProfileName" :placeholder="$t('m.userProfileName')" size="large"
+        <Input v-model="formRegister.real_name" :placeholder="$t('m.real_name')" size="large"
         @on-enter="handleRegister">
-        <Icon type="ios-barcode" slot="prepend"></Icon>
+        <Icon type="ios-contact-outline" slot="prepend"></Icon>
         </Input>
       </FormItem>
 
@@ -149,7 +149,7 @@
           email: '',
           captcha: '',
           // real_name: '',
-          userProfileName: ''
+          real_name: ''
         },
         ruleRegister: {
           username: [
@@ -173,7 +173,7 @@
           // real_name: [
           //   {required: true, trigger: 'blur', min: 1, max: 10}
           // ],
-          userProfileName: [
+          real_name: [
             {required: true, trigger: 'blur', min: 1, max: 10}
           ]
         }

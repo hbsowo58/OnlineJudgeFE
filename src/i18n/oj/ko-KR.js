@@ -214,6 +214,7 @@ export const m = {
   RegisterUsername: '아이디',
   Email_Address: 'Email 주소',
   real_name: '이름',
+  userProfileName: '이름',
   RegisterPassword: '비밀번호',
   Password_Again: '비밀번호 확인',
   Captcha: '보안문자',
