@@ -39,7 +39,12 @@
           </template>
         </el-table-column>
 
+        <!--
         <el-table-column prop="real_name" label="Real Name"></el-table-column>
+        -->
+        <el-table-column prop="real_name" label="이름"></el-table-column>
+        
+        <el-table-column prop="studnetnumber" label="사번"></el-table-column>
 
         <el-table-column prop="email" label="Email"></el-table-column>
 

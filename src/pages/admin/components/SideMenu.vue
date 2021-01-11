@@ -21,7 +21,7 @@
 
     </el-submenu>
     <el-submenu index="contest">
-      <template slot="title"><i class="el-icon-fa-users"></i>{{$t('m.Contest')}}</template>
+      <template slot="title"><i class="el-icon-fa-id-badge"></i>{{$t('m.Contest')}}</template>
       <el-menu-item index="/contest">{{$t('m.Contest_List')}}</el-menu-item>
       <el-menu-item index="/contest/create">{{$t('m.Create_Contest')}}</el-menu-item>
     </el-submenu>

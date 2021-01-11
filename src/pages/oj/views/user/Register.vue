@@ -12,8 +12,8 @@
         </Input>
       </FormItem>
 
-      <FormItem prop="real_name">
-        <Input v-model="formRegister.real_name" :placeholder="$t('m.real_name')" size="large"
+      <FormItem prop="userProfileName">
+        <Input v-model="formRegister.userProfileName" :placeholder="$t('m.userProfileName')" size="large"
         @on-enter="handleRegister">
         <Icon type="ios-barcode" slot="prepend"></Icon>
         </Input>
@@ -46,7 +46,9 @@
       </FormItem>
 
       <div class="agree">
-        <textarea>제 1조 [목적]
+        <textarea>개인정보 취급방침
+
+제 1조 [목적]
 이 약관은 민코딩 및 민코딩연구소 (이하 “회사”)”에서 운영하는 "민코딩 패밀리사이트” (이하 "웹사이트")에서 제공하는 인터넷 관련 서비스(이하 "서비스")를 이용함에 있어 회사와 이용자의 권리, 의무 및 책임 사항을 규정함을 목적으로 합니다.
 
 제2조 [용어의 정의]
@@ -68,15 +70,13 @@
 
 제4조 [약관 외 준칙]
 회사는 필요한 경우 서비스 내의 개별항목에 대하여 개별약관 또는 운영원칙(이하 '서비스 별 안내'라 합니다.)를 정할 수 있으며, 회원은 각 서비스 별 안내에 대해 회원가입과 동시에 동의한 것으로 간주합니다. 본 약관과 서비스 별 안내의 내용이 상충되는 경우에는 서비스 별 안내의 내용을 우선하여 적용합니다.
-
-
-
         </textarea>
       </div>
 
-      <input type="checkbox" class="agreeCheckbox" prop="agree" v-model="formRegister.agree"
-      @on-enter="handleRegister" />
-      <span>약관에 동의합니다</span>
+      <label>
+        <input type="checkbox" class="agreeCheckbox" prop="agree" v-model="formRegister.agree"
+        @on-enter="handleRegister" />  약관에 동의합니다.
+      </label>
 
     </Form>
     <div class="footer">
@@ -132,9 +132,6 @@
         if (this.formRegister.password !== '') {
           this.$refs.formRegister.validateField('passwordAgain')
         }
-        if (this.formRegister.agree !== '') {
-          // this.$refs.formRegister.validateField('AgreeAgain')
-        }
         callback()
       }
       const CheckAgainPassword = (rule, value, callback) => {
@@ -151,7 +148,8 @@
           passwordAgain: '',
           email: '',
           captcha: '',
-          real_name: ''
+          // real_name: '',
+          userProfileName: ''
         },
         ruleRegister: {
           username: [
@@ -172,8 +170,11 @@
           captcha: [
             {required: true, trigger: 'blur', min: 1, max: 10}
           ],
-          real_name: [
-            {required: true, trigger: 'blur', min: 1, max: 5}
+          // real_name: [
+          //   {required: true, trigger: 'blur', min: 1, max: 10}
+          // ],
+          userProfileName: [
+            {required: true, trigger: 'blur', min: 1, max: 10}
           ]
         }
       }

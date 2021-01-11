@@ -1,9 +1,11 @@
 <template>
   <div id="header">
+    <Menu theme="light" mode="horizontal" @on-select="handleRoute" class="oj-menu">
+    <!-- 기본 파란줄 제거
     <Menu theme="light" mode="horizontal" @on-select="handleRoute" :active-name="activeMenu" class="oj-menu">
-
-      <Menu-item name="/">
-      <img src="../../../assets/logo_01.svg" class="logo"/>
+    -->
+      <Menu-item name="/" class="logo">
+      <img src="../../../assets/logo_01.svg"/>
       </Menu-item>
 
       <!-- 
@@ -81,6 +83,7 @@
           {{$t('m.FAQ')}}
         </Menu-item>
       </Submenu>
+      
       <template v-if="!isAuthenticated">
         <div class="btn-menu">
           <Button type="ghost"
@@ -98,7 +101,7 @@
       </template>
       <template v-else>
         <Dropdown class="drop-menu" @on-click="handleRoute" placement="bottom" trigger="click">
-          <Button type="text" class="drop-menu-title">{{ user.username }}
+          <Button type="text" class="drop-menu-title">{{ user.username }}님
             <Icon type="arrow-down-b"></Icon>
           </Button>
           <Dropdown-menu slot="list">
@@ -168,6 +171,8 @@
 </script>
 
 <style lang="less" scoped>
+
+
   #header {
     min-width: 300px;
     position: fixed;
@@ -177,32 +182,30 @@
     width: 100%;
     z-index: 1000;
     background-color: #fff;
-    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1);
+    // box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1);
 
     .oj-menu {
       background: #fdfdfd;
       .menu-title{
         // background:red;
         font-size:16px;
+        font-family: 'Noto Sans KR', sans-serif;
       }
     }
 
     .logo {
-      // margin-left: 2%;
-      // margin-right: 2%;
-      // font-size: 20px;
-      // display:block;
-      // height:20px;
-      padding:14px 7px;
-      float: left;
-      margin:0px auto;
+      margin-left:113px;
+      padding-top:10px;
+      // padding:14px 7px;
+      // float: left;
+      // margin:0px auto;
       // background:red;
       // line-height: 60px;
     }
 
     .drop-menu {
       float: right;
-      margin-right: 30px;
+      margin-right: 90px;
       position: absolute;
       right: 10px;
       &-title {

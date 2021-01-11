@@ -1,9 +1,10 @@
 <template>
-  <Row type="flex" justify="space-around">
-    <Col :span="22">
+  <div class="t">
     <div class="visual">
-      <span class="visual_title">세 가지를 꼭 지켜주세요.</span>
-
+      <span class="visual_title">
+      <span>세 가지</span>를 꼭 지켜주세요.
+      </span>
+  
       <span class="visual_content">
       하나, 모든 소스코드는 처음부터 작성하기
       <br>
@@ -12,39 +13,41 @@
       세엣, 질문은 적극적이고 구체적으로
       </span>
       <img src="../../../../assets/visualimage.jpg"/>
-    </div>
-
-    <Announcements class="announcement"></Announcements>
-    <br>
-    
-    <!-- 3차수 ~~ -->
-    <panel shadow v-if="contests.length" class="contest">
-      <div slot="title">
-        <Button type="text"  class="contest-title" @click="goContest">{{contests[index].title}}</Button>
       </div>
-      <Carousel v-model="index" trigger="hover" autoplay :autoplay-speed="6000" class="contest">
-        <CarouselItem v-for="(contest, index) of contests" :key="index">
-          <div class="contest-content">
-            <div class="contest-content-tags">
-              <Button type="info" shape="circle" size="small" icon="calendar">
-                {{contest.start_time | localtime('YYYY-M-D HH:mm') }}
-              </Button>
-              <Button type="success" shape="circle" size="small" icon="android-time">
-                {{getDuration(contest.start_time, contest.end_time)}}
-              </Button>
-              <Button type="warning" shape="circle" size="small" icon="trophy">
-                {{contest.rule_type}}
-              </Button>
-            </div>
-            <div class="contest-content-description">
-              <blockquote v-html="contest.description"></blockquote>
-            </div>
-          </div>
-        </CarouselItem>
-      </Carousel>
-    </panel>
-    </Col>
-  </Row>
+  <Row type="flex" justify="space-around">
+  <Col :span="22">
+  <Announcements class="announcement"></Announcements>
+  <br>
+  
+  <!-- 3차수
+  <panel shadow v-if="contests.length" class="contest">
+  <div slot="title">
+  <Button type="text"  class="contest-title" @click="goContest">{{contests[index].title}}</Button>
+  </div>
+  <Carousel v-model="index" trigger="hover" autoplay :autoplay-speed="6000" class="contest">
+  <CarouselItem v-for="(contest, index) of contests" :key="index">
+  <div class="contest-content">
+  <div class="contest-content-tags">
+  <Button type="info" shape="circle" size="small" icon="calendar">
+  {{contest.start_time | localtime('YYYY-M-D HH:mm') }}
+  </Button>
+  <Button type="success" shape="circle" size="small" icon="android-time">
+  {{getDuration(contest.start_time, contest.end_time)}}
+  </Button>
+  <Button type="warning" shape="circle" size="small" icon="trophy">
+  {{contest.rule_type}}
+  </Button>
+  </div>
+  <div class="contest-content-description">
+  <blockquote v-html="contest.description"></blockquote>
+  </div>
+  </div>
+  </CarouselItem>
+  </Carousel>
+  </panel>
+  -->
+  </Col>
+  </Row></div>
 </template>
 
 <script>
@@ -83,7 +86,6 @@
     }
   }
 </script>
-
 <style lang="less" scoped>
   .contest {
     &-title {
@@ -98,27 +100,30 @@
     }
   }
 
-    .visual{
-    // background:red;
-    width:100%;
-    // text-align:center;
-    .visual_title{
-      top:250px;
-      left:200px;
-      font-size:20px;
-      // z-inedx:10px;
-      position:absolute;
-    }
-    .visual_content{
-      font-size:20px;
-      // z-inedx:10px;
-      position:absolute;
-      top:300px;
-      left:200px;
-    }
-    img{
-      width:100%;
-    }
+  .visual{
+  // background:red;
+  // width:100%;
+  // text-align:center;
+  margin-bottom:80px;
+   .visual_title{
+    top:300px;
+    left:200px;
+    font-size:20px;
+    // z-inedx:10px;
+    position:absolute;
+    font-family: 'Noto Sans KR', sans-serif;
+   }
+  .visual_content{
+    font-size:20px;
+    // z-inedx:10px;
+    position:absolute;
+    top:350px;
+    left:200px;
+     font-family: 'Noto Sans KR', sans-serif;
+   }
+   img{
+     width:100%;
+   }
   }
 
   .announcement {

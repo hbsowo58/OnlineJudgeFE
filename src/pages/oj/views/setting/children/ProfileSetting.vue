@@ -67,10 +67,15 @@
       <Row type="flex" :gutter="30" justify="space-around">
         <Col :span="11">
           <FormItem label="이름">
-            <Input v-model="formProfile.real_name"/>
+            <Input v-model="userProfileName" :disabled = "true"/>
           </FormItem>
+
           <Form-item label="사번">
             <Input v-model="formProfile.school"/>
+          </Form-item>
+
+          <Form-item label="Email">
+            <Input v-model="major" :disabled = "true"/>
           </Form-item>
 
           <!--
@@ -173,7 +178,6 @@
         formProfile: {
           real_name: '',
           mood: '',
-          major: '',
           // blog: '',
           school: '',
           github: '',
@@ -181,11 +185,28 @@
           object: '',
           birth: '',
           language1: 'C/C++11'
-        }
+        },
+        userProfileName: '',
+        major: ''
       }
     },
     mounted () {
       let profile = this.$store.state.user.profile
+
+      const userProfileNam1 = Object.entries(profile['user']).filter(el => {
+        if (el[0] === 'userProfileName') {
+          return el[1]
+        }
+      })
+      this.userProfileName = userProfileNam1[0][1]
+
+      const userProfileEmail1 = Object.entries(profile['user']).filter(el => {
+        if (el[0] === 'email') {
+          return el[1]
+        }
+      })
+      this.major = userProfileEmail1[0][1]
+
       Object.keys(this.formProfile).forEach(element => {
         if (profile[element] !== undefined) {
           this.formProfile[element] = profile[element]

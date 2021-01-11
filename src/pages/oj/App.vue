@@ -82,8 +82,8 @@
 
 @media screen and (min-width: 1200px) {
   .content-app {
-    margin-top: 80px;
-    padding: 0 2%;
+    margin-top: 60px;
+    // padding: 0 2%;
   }
 }
 
