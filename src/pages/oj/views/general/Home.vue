@@ -101,11 +101,8 @@
   }
 
   .visual{
-  // background:red;
-  // width:100%;
-  // text-align:center;
-  margin-bottom:80px;
-   .visual_title{
+    margin-bottom:80px;
+    .visual_title{
     top:300px;
     left:200px;
     font-size:20px;

@@ -5,7 +5,7 @@
     <Menu theme="light" mode="horizontal" @on-select="handleRoute" :active-name="activeMenu" class="oj-menu">
     -->
       <Menu-item name="/" class="logo">
-      <img src="../../../assets/logo_01.svg"/>
+      <img src="../../../assets/logo_01.svg" class="logoImage"/>
       </Menu-item>
 
       <!-- 
@@ -191,21 +191,21 @@
         font-size:16px;
         font-family: 'Noto Sans KR', sans-serif;
       }
+      .logo {
+        margin-left:80px;
+        padding-top:10px;
+        padding-left:0px;
+        .logoImage{
+          width:80px;
+          height:30px;
+          font-size:16px;
+        }
     }
-
-    .logo {
-      margin-left:113px;
-      padding-top:10px;
-      // padding:14px 7px;
-      // float: left;
-      // margin:0px auto;
-      // background:red;
-      // line-height: 60px;
     }
 
     .drop-menu {
       float: right;
-      margin-right: 90px;
+      margin-right: 50px;
       position: absolute;
       right: 10px;
       &-title {
