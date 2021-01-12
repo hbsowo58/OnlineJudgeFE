@@ -100,7 +100,7 @@
          -->
 
           <Form-item>
-            <Button type="primary" @click="updateProfile" :loading="loadingSaveBtn">Save All</Button>
+            <Button type="primary" @click="updateProfile" :loading="loadingSaveBtn">변경내용 저장하기</Button>
           </Form-item>
         </Col>
 

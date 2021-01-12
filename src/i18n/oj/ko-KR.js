@@ -9,7 +9,7 @@ export const m = {
   Sample_Output: '출력 예시',
   Hint: 'Hint',
   Source: '소스코드',
-  Status: 'Status',
+  Status: '상태',
   Information: '문제정보',
   Time_Limit: 'Time Limit',
   Memory_Limit: 'Memory Limit',
@@ -125,9 +125,9 @@ export const m = {
   Rule: 'Rule',
   OI: 'OI',
   ACM: 'ACM',
-  Underway: 'Underway',
-  Not_Started: 'Not_Started',
-  Ended: 'Ended',
+  Underway: '해결',
+  Not_Started: '시작안함',
+  Ended: '틀림',
   No_contest: '로그인 필요',
   Please_login_first: '로그인이 필요합니다.',
   // ContestProblemList
@@ -233,7 +233,7 @@ export const m = {
   Send_Password_Reset_Email: '비밀번호 리셋',
   Your_password_has_been_reset: 'Your password has been reset.',
   // Save.vue
-  Save: 'Save',
+  Save: '저장',
   // Simditor.vue
   Uploading_is_in_progress: 'Uploading is in progress, are you sure to leave this page?',
   // SubmissionDetails.vue

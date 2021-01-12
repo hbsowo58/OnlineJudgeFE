@@ -32,9 +32,9 @@
           </el-col>
         </el-row>
       </el-form>
-      <el-button type="primary" @click="saveSMTPConfig">Save</el-button>
+      <el-button type="primary" @click="saveSMTPConfig">저장</el-button>
       <el-button type="warning" @click="testSMTPConfig"
-                 v-if="saved" :loading="loadingBtnTest">Send Test Email</el-button>
+                 v-if="saved" :loading="loadingBtnTest">테스트 이메일 보내기</el-button>
     </Panel>
 
     <Panel :title="$t('m.Website_Config')">

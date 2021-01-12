@@ -23,7 +23,7 @@
         </el-table-column>
         <el-table-column
           prop="status"
-          label="Status">
+          label="상태">
           <template slot-scope="scope">
             <el-tag
               :type="scope.row.status === 'normal' ? 'success' : 'danger'">
@@ -33,7 +33,7 @@
         </el-table-column>
         <el-table-column
           prop="hostname"
-          label="Hostname">
+          label="호스트명">
         </el-table-column>
         <el-table-column
           prop="task_number"
@@ -45,22 +45,22 @@
         </el-table-column>
         <el-table-column
           prop="cpu_usage"
-          label="CPU Usage">
+          label="CPU 사용량">
           <template slot-scope="scope">{{ scope.row.cpu_usage }}%</template>
         </el-table-column>
         <el-table-column
           prop="memory_usage"
-          label="Memory Usage">
+          label="Memory 사용량">
           <template slot-scope="scope">{{ scope.row.memory_usage }}%</template>
         </el-table-column>
-        <el-table-column label="Disabled">
+        <el-table-column label="비활성화">
           <template slot-scope="{row}">
             <el-switch v-model="row.is_disabled" @change="handleDisabledSwitch(row.id, row.is_disabled)"></el-switch>
           </template>
         </el-table-column>
         <el-table-column
           fixed="right"
-          label="Options">
+          label="옵션">
           <template slot-scope="scope">
             <icon-btn name="Delete" icon="trash" @click.native="deleteJudgeServer(scope.row.hostname)"></icon-btn>
           </template>

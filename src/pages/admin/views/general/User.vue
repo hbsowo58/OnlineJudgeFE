@@ -36,13 +36,13 @@
             {{ scope.row.admin_type }}
           </template>
         </el-table-column>
-         <el-table-column prop="create_time" label="사번">
+         <el-table-column prop="school" label="사번">
           <template slot-scope="scope">
-            {{scope.row.create_time | localtime }}
+            {{scope.row.school }}
           </template>
         </el-table-column>
 
-        <el-table-column prop="create_time" label="가입일">
+        <el-table-column prop="create_time" label="가입날짜">
           <template slot-scope="scope">
             {{scope.row.create_time | localtime }}
           </template>
