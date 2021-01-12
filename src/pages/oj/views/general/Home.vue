@@ -15,7 +15,7 @@
     </div>
   <Row type="flex" justify="space-around">
     <Col :span="22">
-    <br>
+      <br>
       <panel shadow v-if="contests.length" class="contest">
       <div slot="title">
       <Button type="text"  class="contest-title" @click="goContest">{{contests[index].title}}</Button>
@@ -41,8 +41,8 @@
   </div>
     </CarouselItem>
   </Carousel>
-  </panel>
-   <Announcements class="announcement"></Announcements>
+      </panel>
+      <Announcements class="announcement"></Announcements>
     </Col>
   </Row>
   </div>
@@ -117,11 +117,11 @@
    }
   .visual{
     margin-bottom:40px;
-    font-family:'Noto Sans KR'; font-size-adjust:0.45;
+    font-family:'Noto Sans KR';
     font-weight:300;
     .visual_title{
-    top:110px;
-    left:200px;
+    top:25%;
+    left:15%;
     position:absolute;
     font-size:39px;
     .visual_sub{
@@ -131,47 +131,57 @@
   .visual_content{
     font-size:21px;
     position:absolute;
-    top:200px;
-    left:200px;
+    top:40%;
+    left:15%;
    }
-
   }
 
   .announcement {
     margin-top:60px;
   }
-// @media screen and (max-width: 1200px) {
-//    .contest {
-//      width:90vw;
-//     &-title {
-//       font-style: italic;
-//       font-size: 10px;
-//     }
-//     &-content {
-//       padding: 0 35px 20px 35px;
-//       &-description {
-//         margin-top: 12px;
-//       }
-//     }
-//   }
+@media screen and (max-width: 1200px) {
+  .visual_pic{
+    margin:-160px -2% 0 -2%;
+    height:60vh;
+   }
 
-//   .visual{
-//     margin-bottom:20px;
-//     .visual_title{
-//     left:100px;
-//    }
-//   .visual_content{
-//     left:100px;
-//    }
+  .visual{
+    margin-bottom:20px;
+    .visual_title{
+    top:35%;
+    }
+    .visual_content{
+    top:50%;
+    }
+  }
+}
+@media screen and (max-width: 770px) {
+  .visual{
+    .visual_title{
+    font-size:30px;
+   }
+  .visual_content{
+    font-size:20px;
+   }
+  }
+}
 
-//    .visual_pic{
-//      height:40vh;
-//    }
-//   }
-
-//   .announcement {
-//     margin-top:30px;
-//     width:90vw;
-//   }
-// }
+@media screen and (max-width: 500px) {
+  .contest{
+    display: none;
+  }
+  .visual{
+    .visual_title{
+    font-size:25px;
+    top:50%;
+   }
+  .visual_content{
+    font-size:15px;
+    top:65%;
+   }
+  .visual_pic{
+    height:50vh;
+   }
+  }
+}
 </style>

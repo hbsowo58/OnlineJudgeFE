@@ -15,9 +15,9 @@ export const m = {
   Contest_List: '기업강의 목록',
   Create_Contest: '강의 생성하기',
   // User.vue
-  User_User: '사용자',
-  Import_User: '사용자 가져오기',
-  Generate_User: '사용자 생성하기',
+  User_User: '회원정보',
+  Import_User: '일괄 회원등록 (.csv)',
+  Generate_User: '일괄 회원생성',
   // User.vue-dialog
   User_Info: '사용자',
   User_Username: '아이디',
@@ -26,7 +26,7 @@ export const m = {
   User_New_Password: '새 비밀번호',
   User_Type: '사용자 유형',
   Problem_Permission: '문제 승인',
-  Two_Factor_Auth: '이중 인증',
+  Two_Factor_Auth: '2 Factor 인증',
   Is_Disabled: '비활성화',
   // Announcement.vue
   General_Announcement: '공지사항',

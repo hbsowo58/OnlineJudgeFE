@@ -40,7 +40,7 @@
         </Menu-item>        
       </Submenu>
 
-      <Menu-item name="/contest">
+      <Menu-item name="/contest" class="contest">
         <Icon type="person-stalker"></Icon>
         <span class="menu-title">{{$t('m.Contests')}}</span>
       </Menu-item>
@@ -53,12 +53,12 @@
       </Menu-item>
       -->
       
-      <Menu-item name="/status" v-if="isSuperAdmin">
+      <Menu-item name="/status" v-if="isSuperAdmin" class="status">
         <Icon type="ios-pulse-strong"></Icon>
         <span class="menu-title">{{$t('m.NavStatus')}}</span>
       </Menu-item>
       
-      <Submenu name="rank" v-if="isSuperAdmin">
+      <Submenu name="rank" v-if="isSuperAdmin" class="rank">
         <template slot="title">
           <Icon type="podium"></Icon>
           <span class="menu-title">{{$t('m.Rank')}}</span>
@@ -189,16 +189,17 @@
       .menu-title{
         // background:red;
         font-size:16px;
-        // font-family: 'Noto Sans KR', sans-serif;
+        font-family: 'Noto Sans KR', sans-serif;
+        font-weight: 500;
         letter-spacing:-1px;
         margin-left:-7px;
       }
       .logo {
-        margin-left:80px;
-        padding-top:10px;
-        padding-left:0px;
-        padding-right:0px;
-        margin-right:40px;
+      margin-left:5vw;
+      padding-top:1vh;
+      padding-left:0px;
+      padding-right:0px;
+      margin-right:3vw;
         .logoImage{
           width:80px;
           height:30px;
@@ -219,7 +220,7 @@
     .btn-menu {
       font-size: 16px;
       float: right;
-      margin-right: 10px;
+      margin-right: 5vw;
     }
   }
 
@@ -230,9 +231,57 @@
     }
   }
 
-  // @media screen and (max-width: 1200px) {
-  //   .about{
-  //     display:none;
-  //   }
-  // }
+@media screen and (max-width: 1000px) {
+  #header{
+    .about{
+      display:none;
+    }
+    .drop-menu{
+      margin-right:0px;
+    }
+  }
+}
+@media screen and (max-width: 770px) {
+  #header {
+    .oj-menu {
+      .logo {
+        .logoImage{
+          width:70px;
+          height:30px;
+          font-size:16px;
+        }
+      }
+    }
+  }
+  .rank{
+    display: none;
+  }
+}
+@media screen and (max-width: 600px){
+  .status{
+    display:none;
+  }
+}
+@media screen and (max-width: 400px) {
+  #header {
+    .btn-menu {
+      float: none;
+      margin-right: 0;
+    }
+    .oj-menu{
+      .logo{
+        .logoImage{
+          width:60px;
+          height:20px;
+        }
+      }
+    }
+    .ivu-menu-item{
+      padding:0px 10px;
+    }
+    .contest{
+      display:none;
+    }
+  }
+}
 </style>
