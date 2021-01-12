@@ -1,6 +1,6 @@
 <template>
   <div class="view">
-    <Panel title="Contest List">
+    <Panel title="기업강의 목록">
       <div slot="header">
         <el-input
           v-model="keyword"
@@ -29,17 +29,17 @@
         </el-table-column>
         <el-table-column
           prop="title"
-          label="Title">
+          label="제목">
         </el-table-column>
         <el-table-column
-          label="Rule Type"
+          label="Rule"
           width="130">
           <template slot-scope="scope">
             <el-tag type="gray">{{scope.row.rule_type}}</el-tag>
           </template>
         </el-table-column>
         <el-table-column
-          label="Contest Type"
+          label="공개 / 비공개"
           width="180">
           <template slot-scope="scope">
             <el-tag :type="scope.row.contest_type === 'Public' ? 'success' : 'primary'">
@@ -48,7 +48,7 @@
           </template>
         </el-table-column>
         <el-table-column
-          label="Status"
+          label="상태"
           width="130">
           <template slot-scope="scope">
             <el-tag
@@ -59,7 +59,7 @@
         </el-table-column>
         <el-table-column
           width="100"
-          label="Visible">
+          label="표시여부">
           <template slot-scope="scope">
             <el-switch v-model="scope.row.visible"
                        active-text=""
@@ -71,13 +71,13 @@
         <el-table-column
           fixed="right"
           width="250"
-          label="Operation">
+          label="세부설정">
           <div slot-scope="scope">
-            <icon-btn name="Edit" icon="edit" @click.native="goEdit(scope.row.id)"></icon-btn>
-            <icon-btn name="Problem" icon="list-ol" @click.native="goContestProblemList(scope.row.id)"></icon-btn>
-            <icon-btn name="Announcement" icon="info-circle"
+            <icon-btn name="강의 편집" icon="edit" @click.native="goEdit(scope.row.id)"></icon-btn>
+            <icon-btn name="문제 목록" icon="list-ol" @click.native="goContestProblemList(scope.row.id)"></icon-btn>
+            <icon-btn name="강사님 코드" icon="info-circle"
                       @click.native="goContestAnnouncement(scope.row.id)"></icon-btn>
-            <icon-btn icon="download" name="Download Accepted Submissions"
+            <icon-btn icon="download" name="정답 소스코드 다운로드"
                       @click.native="openDownloadOptions(scope.row.id)"></icon-btn>
           </div>
         </el-table-column>
@@ -92,12 +92,12 @@
         </el-pagination>
       </div>
     </Panel>
-    <el-dialog title="Download Contest Submissions"
+    <el-dialog title="정답 소스코드 다운로드"
                width="30%"
                :visible.sync="downloadDialogVisible">
-      <el-switch v-model="excludeAdmin" active-text="Exclude admin submissions"></el-switch>
+      <el-switch v-model="excludeAdmin" active-text="관리자가 제출한 소스코드 제외"></el-switch>
       <span slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="downloadSubmissions">确 定</el-button>
+        <el-button type="primary" @click="downloadSubmissions">다운로드</el-button>
       </span>
     </el-dialog>
   </div>

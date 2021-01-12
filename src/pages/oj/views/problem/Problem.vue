@@ -104,15 +104,22 @@
     <div id="right-column">
       <VerticalMenu @on-click="handleRoute">
         <template v-if="this.contestID">
+          <VerticalMenu-item :route="{name: 'contest-details', params: {contestID: contestID}}">
+            <Icon type="home"></Icon>
+            {{$t('m.View_Contest')}}
+          </VerticalMenu-item>
+           <VerticalMenu-item :route="{name: 'contest-announcement-list', params: {contestID: contestID}}">
+            <Icon type="chatbubble-working"></Icon>
+            강사님 코드
+            <!-- {{$t('m.Announcements')}} -->
+          </VerticalMenu-item>
+
           <VerticalMenu-item :route="{name: 'contest-problem-list', params: {contestID: contestID}}">
             <Icon type="ios-photos"></Icon>
             {{$t('m.Problems')}}
           </VerticalMenu-item>
 
-          <VerticalMenu-item :route="{name: 'contest-announcement-list', params: {contestID: contestID}}">
-            <Icon type="chatbubble-working"></Icon>
-            {{$t('m.Announcements')}}
-          </VerticalMenu-item>
+         
         </template>
 
         <VerticalMenu-item v-if="!this.contestID || OIContestRealTimePermission" :route="submissionRoute">
@@ -126,10 +133,7 @@
             <Icon type="stats-bars"></Icon>
             {{$t('m.Rankings')}}
           </VerticalMenu-item>
-          <VerticalMenu-item :route="{name: 'contest-details', params: {contestID: contestID}}">
-            <Icon type="home"></Icon>
-            {{$t('m.View_Contest')}}
-          </VerticalMenu-item>
+          
         </template>
       </VerticalMenu>
 
@@ -139,7 +143,7 @@
           <span class="card-title">{{$t('m.Information')}}</span>
         </div>
         <ul>
-          <li><p>ID</p>
+          <li><p>문제 ID</p>
             <p>{{problem._id}}</p></li>
           <li>
             <p>{{$t('m.Time_Limit')}}</p>

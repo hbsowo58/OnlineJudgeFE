@@ -1,6 +1,6 @@
 <template>
   <div class="announcement view">
-    <Panel :title="$t('m.General_Announcement')">
+    <Panel title="강사님 코드">
       <div class="list">
         <el-table
           v-loading="loading"

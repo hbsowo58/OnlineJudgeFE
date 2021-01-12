@@ -10,7 +10,7 @@
             </el-button>
           </el-col>
           <el-col :span="selectedUsers.length ? 16: 24">
-            <el-input v-model="keyword" prefix-icon="el-icon-search" placeholder="Keywords"></el-input>
+            <el-input v-model="keyword" prefix-icon="el-icon-search" placeholder="회원ID / 이름 / Email 검색"></el-input>
           </el-col>
         </el-row>
       </div>
@@ -31,14 +31,15 @@
 
         <el-table-column prop="email" label="Email"></el-table-column>
 
+        <el-table-column prop="school" label="사번">
+          <template slot-scope="scope">
+            {{scope.row.school }}
+          </template>
+        </el-table-column>
+
         <el-table-column prop="admin_type" label="분류">
           <template slot-scope="scope">
             {{ scope.row.admin_type }}
-          </template>
-        </el-table-column>
-         <el-table-column prop="school" label="사번">
-          <template slot-scope="scope">
-            {{scope.row.school }}
           </template>
         </el-table-column>
 

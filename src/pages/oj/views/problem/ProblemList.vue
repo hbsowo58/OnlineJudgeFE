@@ -110,6 +110,7 @@
             }
           },
           {
+            // title: this.$i18n.t('m.Title'),
             title: this.$i18n.t('m.Title'),
             width: 400,
             render: (h, params) => {

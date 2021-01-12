@@ -27,13 +27,14 @@
       return {
         ACMTableColumns: [
           {
-            title: '#',
+            title: '문제 ID',
             key: '_id',
             sortType: 'asc',
             width: 150
           },
           {
-            title: this.$i18n.t('m.Title'),
+            // title: this.$i18n.t('m.Title'),
+            title: '문제명',
             key: 'title'
           },
           {

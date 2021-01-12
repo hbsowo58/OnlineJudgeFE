@@ -93,7 +93,7 @@
     },
     data () {
       return {
-        title: 'Create Contest',
+        title: '강의 생성하기',
         disableRuleType: false,
         contest: {
           title: '',

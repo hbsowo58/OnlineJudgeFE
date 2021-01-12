@@ -97,7 +97,7 @@ export const m = {
   Tag: 'Tag',
   New_Tag: 'New Tag',
    // ProblemList.vue
-  Contest_Problem_List: 'Contest Problem List',
+  Contest_Problem_List: '강의 문제목록',
   // Contest.vue
   ContestTitle: 'Title',
   ContestDescription: 'Description',
