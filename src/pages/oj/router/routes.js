@@ -18,6 +18,10 @@ import {
   Category
 } from '../views'
 
+import Board from '../views/board/Board.vue'
+import Read from '../views/board/Read.vue'
+import Create from '../views/board/Create.vue'
+
 import * as Contest from '@oj/views/contest'
 import * as Setting from '@oj/views/setting'
 
@@ -172,6 +176,24 @@ export default [
     name: 'about',
     meta: {title: 'About'},
     component: About
+  },
+  {
+    path: '/board',
+    name: 'board',
+    meta: {title: 'Board'},
+    component: Board
+  },
+  {
+    path: '/read',
+    name: 'read',
+    meta: {title: 'Read'},
+    component: Read
+  },
+  {
+    path: '/create',
+    name: 'create',
+    meta: {title: 'Create'},
+    component: Create
   },
   {
     path: '/faq',

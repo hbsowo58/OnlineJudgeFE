@@ -83,6 +83,11 @@
           {{$t('m.FAQ')}}
         </Menu-item>
       </Submenu>
+
+      <Menu-item name="/board">
+        <Icon type="ios-pulse-strong"></Icon>
+        <span>{{$t('게시판')}}</span>
+      </Menu-item>
       
       <template v-if="!isAuthenticated">
         <div class="btn-menu">
