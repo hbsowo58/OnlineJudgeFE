@@ -1,14 +1,13 @@
 <template>
   <div>
-    <!-- <Read></Read> -->
+    <Read/>
   </div>
 </template>
 
 <script>
-// import Read from '/Read.vue'
-// import data from '../data'
+import Read from './Read.vue'
 export default {
-//   components: { Read },
+  components: { Read },
   name: 'Board',
   data () {
     return {
