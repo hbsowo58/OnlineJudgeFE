@@ -269,12 +269,18 @@ export default {
       data
     })
   },
-  getBoardList (data) {
-    return ajax('board-list', 'get')
+  getBoardList (params) {
+    console.log(params)
+    // params.limit = limit
+    // params.offset = offset
+    return ajax('board-list', 'get', {
+      params
+    })
   },
   
   getBoardDetail(params){
     console.log(params);
+    
     return ajax('board', 'get', {
       params: {
         board_id: params
@@ -282,6 +288,7 @@ export default {
     })
   },
   postBoard(title, content, created_by_id){
+
     return ajax('board', 'post',{
       data:{
         title,

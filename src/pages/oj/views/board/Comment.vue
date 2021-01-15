@@ -20,7 +20,7 @@ export default {
     // ...mapGetters(['profile'])
   },
   mounted(){
-      console.log(this.$route.params["board_id"]);
+      // console.log(this.$route.params["board_id"]);
     //   console.log(this.user)
     //  console.log(this.user.profile.user.id)
     // console.log(this.profile);
