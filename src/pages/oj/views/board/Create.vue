@@ -1,41 +1,57 @@
 <template>
     <div>
-        <input v-model="writer" placeholder="글쓴이"/>
-        <input v-model="title" placeholder="제목"/>
-        <textarea v-model="content" placeholder="내용"/>
-        <button @click="index !== undefined ? update() : write()">{{index !== undefined ? "수정" : "작성"}}</button>
+        <el-input v-model="title" placeholder="제목을 입력해주세요"/>
+        <el-input type="textarea" autosize placeholder="내용을 입력해주세요" v-model="content"/>
+
+        <el-button v-if="index" @click="update">수정</el-button>
+        <el-button v-else @click="write">작성</el-button>
+
+        <!-- <el-button @click="index !== undefined ? update() : write()">{{index !== undefined ? "수정" : "작성"}}</el-button> -->
     </div>    
 </template>
 
 <script>
+import api from '@oj/api'
 import data from '../data'
+import {mapActions, mapState} from "vuex"
 export default {
   name: 'Create',
   data () {
     const index = this.$route.params.contentId
     return {
-      data: data,
-      index: index,
-      writer: index !== undefined ? data[index].writer : '',
-      title: index !== undefined ? data[index].title : '',
-      content: index !== undefined ? data[index].content : ''
+      data: "",
+      index: "",
+      title: '',
+      content: '',
+      route:''
     }
   },
+  computed:{
+    ...mapState(['board']),
+    ...mapState(['user'])
+  },
+  async mounted(){
+    if(this.$route.params["board_id"]){
+      console.log(this.board);
+      this.index = this.$route.params["board_id"]
+      await this.getBoard(this.$route.params["board_id"]);
+      console.log(this.board);
+      this.title = this.board.board.title
+      this.content = this.board.board.content
+    }
+    // 수정글 작성시 해당 로그인 권한과 맞춰서 권한이 맞지 않을경우 수정이 불가능하게 한다
+    
+  },
   methods: {
-    write () {
-      this.data.push({
-        writer: this.writer,
-        title: this.title,
-        content: this.content
-      })
+    ...mapActions(['getBoard']),
+    async write () {
+      await api.postBoard(this.title, this.content, this.user.profile.user.id)
       this.$router.push({
         path: '/board'
       })
     },
-    update () {
-      data[this.index].writer = this.writer
-      data[this.index].title = this.title
-      data[this.index].content = this.content
+    async update () {
+      const test = await api.putBoard(this.title, this.content, this.$route.params["board_id"])
       this.$router.push({
         path: '/board'
       })
@@ -43,3 +59,21 @@ export default {
   }
 }
 </script>
+
+
+<style lang="less">
+  .el-input input{
+    margin-top:100px;
+    margin-bottom:20px;
+  }
+
+  // .el-textarea{
+  //   background: red;
+  // }
+
+  .el-textarea__inner{
+    margin-bottom:20px;
+    min-height: 100px !important;
+    // background: red;
+  }
+</style>

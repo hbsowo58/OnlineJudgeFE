@@ -1,10 +1,8 @@
 <template>
   <div style="margin:100px auto;">
 
-    <el-button type="primary" @click="write" style="float:right; margin-bottom:20px;">글쓰기</el-button>
-    {{data.nu}}
+    <el-button type="primary" @click="write">글쓰기</el-button>
     <el-table @row-click="detail" :data="data" style="width: 100%"
-    :default-sort = "{prop: 'content', order: 'descending'}"
     >
       <el-table-column
       type="selection"
@@ -86,3 +84,7 @@ export default {
   }
 }
 </script>
+
+<style>
+
+</style>
