@@ -75,7 +75,7 @@ export default {
         );
       }
       this.$router.push({
-        path: "/board"
+        path: `/board/${this.$route.params["board_id"]}`
       });
     }
   }
