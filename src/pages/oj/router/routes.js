@@ -178,6 +178,12 @@ export default [
     meta: {title: 'About'},
     component: About
   },
+    {
+    path: '/board/:board_id',
+    name: 'Detail',
+    meta: {title: 'Detail'},
+    component: Detail
+  },
   {
     path: '/board',
     name: 'Board',
@@ -196,12 +202,7 @@ export default [
     meta: {title: 'Create'},
     component: Create
   },
-  {
-    path: '/detail/:board_id',
-    name: 'Detail',
-    meta: {title: 'Detail'},
-    component: Detail
-  },
+
   {
     path: '/faq',
     name: 'faq',

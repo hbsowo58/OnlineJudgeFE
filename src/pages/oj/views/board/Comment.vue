@@ -42,11 +42,21 @@ export default {
 
 <style lang="less">
 .comment{
+  position: relative;
+  text-align: center;
     .el-input {
         input{
-            min-height: 80px;
+            border:none;
+            border-top: 1px solid #eeeeee;
+            min-height: 52px;
         }
     }
-    text-align: center;
+    .el-button{
+      min-width: 8rem;
+      height: 100% !important;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+    }
 }
 </style>

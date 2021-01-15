@@ -3,12 +3,12 @@
     <!-- {{board['board']}} -->
     <el-container>
       <el-header>
-        <div type="flex">
+        <div class="detail-header-wrapper">
           <div class="detail_title">질의응답</div>
           <div class="detail_subtitle">
             <span> 작성자 : {{ board['board'].real_name }} </span>
-            <span> 작성일 : {{ board['board'].created_time }} </span>
-            <span> 조회(임시) </span> <span> 댓글(임시) </span>
+            <span> 작성일 : {{ toLocal(board['board'].created_time) }} </span>
+            <!-- <span> 조회(임시) </span> <span> 댓글(임시) </span> -->
           </div>
         </div>
       </el-header>
@@ -28,8 +28,8 @@
           <div class="board_comment-wrapper">
             <div class="board_comment">
               <span class="detail_comment_font">{{ c.real_name }} </span>
-              <span class="detail_comment_font"> {{ c.created_time }}</span>
-              <el-button style="margin-left:auto;">수정/삭제</el-button>
+              <span class="detail_comment_font"> {{toLocal(c.created_time)}}</span>
+              <el-button class="detail_comment_button">수정/삭제</el-button>
             </div>
             <div>{{ c.comment }}</div>
           </div>
@@ -37,18 +37,11 @@
         <Comment />
       </el-footer>
     </el-container>
-    <!--
-      {{data}}
-      <div>{{data.writer}}</div>
-      <div>{{data.title}}</div>
-      <div>{{data.content}}</div>
-      <button @click="updateData">수정</button>
-      <button @click="deleteData">삭제</button>
-    -->
   </div>
 </template>
 
 <script>
+import time from '@/utils/time'
 import api from "@oj/api";
 import Comment from "./Comment";
 import {mapState,mapMutations,mapActions }from "vuex"
@@ -69,6 +62,7 @@ export default {
   }
   ,
   async mounted() {
+    console.log(time)
     // await this.getData();
     const reuslt = await this.getBoard(this.$route.params["board_id"])
     console.log(this.board.board);
@@ -87,6 +81,13 @@ export default {
   },
   methods: {
     ...mapActions(['getBoard']),
+
+    toLocal(data){
+      const result = time.utcToLocal(data, 'YYYY-MM-D');
+      
+      return result;
+    }
+    ,
     // ...mapMutations(['POST_COMMENT']),
     async getData(){
         const parameter = this.$route.params["board_id"];
@@ -120,10 +121,11 @@ export default {
   }
 };
 </script>
-<style>
+<style scoped>
 .el-header {
   background: white;
-  margin-top: 50px;
+  padding: 40px 40px;
+  height: 100% !important;
 }
 .el-footer {
   height: 100%;
@@ -137,25 +139,42 @@ export default {
 
 .el-main {
   background: white;
+  min-height: 30vh;
 }
 .el-footer {
   height: 100% !important;
+  padding:0 !important;
 }
 
+.el-input input{
+  border-top: 1px solid #eeeeee;
+}
 body > .el-container {
   margin-bottom: 40px;
+}
+.detail-header-wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
 }
 
 .detail_title {
   /* background:red; */
   text-align: left;
-  font-size: 16px;
+  font-size: 21px;
+  font-weight: 500;
   margin-bottom: 10px;
 }
 
 .detail_subtitle {
   margin-right: 10px;
   text-align: left;
+  display: flex;
+
+}
+.detail_subtitle > span{
+  margin-left: 30px;
 }
 
 .detail_content {
@@ -173,24 +192,35 @@ body > .el-container {
   text-align: right;
 }
 
+.comment{
+  
+}
 .detail_comment {
-  border: 1px solid #000;
-  background-color: #e9eef3;
-  margin-top: 10px;
-  margin-bottom: 20px;
+  border: 1px solid #eeeeee;
+  background-color: white;
+  padding:10px 24px;
+  /* margin-top: 10px; */
+  /* margin-bottom: 20px; */
   /* background:red; */
 }
-
+.detail_comment_button{
+  margin-left: auto;
+  font-size: 15px;
+}
 .detail_comment_font {
-  font-size: 16px;
+  font-size: 15px;
   margin-right: 20px;
 }
 
 .board_comment-wrapper {
   display: flex;
   flex-direction: column;
+
 }
 .board_comment {
   display: flex;
+}
+.board_comment button{
+  padding:11px !important;
 }
 </style>
