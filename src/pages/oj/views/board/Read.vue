@@ -63,6 +63,7 @@
 <script>
 import time from "@/utils/time";
 import api from "@oj/api";
+import {mapState} from "vuex"
 // import data from '../data'
 export default {
   name: "Read",
@@ -76,6 +77,15 @@ export default {
   async mounted() {
     // const response = await api.getBoardList({limit:10, offset:30});
     this.test();
+    const data = this.user.profile.user.email;
+    console.log(data);
+    // if(data.indexOf() < -1){
+    //   this.$router.push("/");
+    // }
+    
+  },
+  computed:{
+    ...mapState(["user"])
   },
   methods: {
     async test() {

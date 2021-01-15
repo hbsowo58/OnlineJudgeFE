@@ -88,6 +88,11 @@
         <Icon type="ios-pulse-strong"></Icon>
         <span>{{$t('게시판')}}</span>
       </Menu-item>
+
+      <!-- <Menu-item name="/board" v-if="user.profile.user.email.indexOf("samsung") > 0">
+        <Icon type="ios-pulse-strong"></Icon>
+        <span>{{$t('게시판')}}</span>
+      </Menu-item> -->
       
       <template v-if="!isAuthenticated">
         <div class="btn-menu">
@@ -129,7 +134,7 @@
 </template>
 
 <script>
-  import { mapGetters, mapActions } from 'vuex'
+  import { mapGetters, mapActions, mapState } from 'vuex'
   import login from '@oj/views/user/Login'
   import register from '@oj/views/user/Register'
 
@@ -140,6 +145,9 @@
     },
     mounted () {
       this.getProfile()
+    },
+    computed:{
+      ...mapState(["user"])
     },
     methods: {
       ...mapActions(['getProfile', 'changeModalStatus']),
