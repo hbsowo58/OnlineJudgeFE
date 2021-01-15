@@ -4,7 +4,7 @@
       <el-header>
         <div type="flex">
           <div>질의응답</div>
-          <span> {{ data.id }} </span> <span> {{ data.created_time }} </span>
+          <span> {{ data.real_name }} </span> <span> {{ data.created_time }} </span>
           <span> 조회(임시) </span> <span> 댓글(임시) </span>
         </div>
       </el-header>
@@ -19,7 +19,7 @@
       <el-footer style="height:100%">
         <!-- {{ data.comments }} -->
         <div v-for="c in data.comments" :key="c.id">
-          {{c.created_by}} : {{c.comment}}
+          {{c.real_name}} : {{c.comment}}
         </div>
       </el-footer>
     </el-container>
@@ -57,7 +57,7 @@ export default {
     console.log(result);
     this.data = result;
     const loginId = this.$store.state.user.profile['user'].id
-    api.postBoard("치킨","jmt", loginId);
+    // api.postBoard("치킨","jmt", loginId);
     // const test1 = await api.putBoard("믿고있었다고", "젠장!!!",parameter);
     // console.log(test1);
     // const test2 = await api.deleteBoard(parameter)
