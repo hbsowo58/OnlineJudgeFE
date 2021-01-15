@@ -191,13 +191,13 @@ export default [
     component: Read
   },
   {
-    path: '/create/:contentId?',
+    path: '/create/:board_id?',
     name: 'Create',
     meta: {title: 'Create'},
     component: Create
   },
   {
-    path: '/detail/:contentId',
+    path: '/detail/:board_id',
     name: 'Detail',
     meta: {title: 'Detail'},
     component: Detail

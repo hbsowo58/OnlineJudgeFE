@@ -268,7 +268,68 @@ export default {
     return ajax('admin/contest/acm_helper', 'put', {
       data
     })
-  }
+  },
+  getBoardList (data) {
+    return ajax('board-list', 'get')
+  },
+  
+  getBoardDetail(params){
+    console.log(params);
+    return ajax('board', 'get', {
+      params: {
+        board_id: params
+      }
+    })
+  },
+  postBoard(title, content, created_by_id){
+    return ajax('board', 'post',{
+      data:{
+        title,
+        content,
+        created_by_id
+      }
+    })
+  },
+  putBoard(title, content, parameter){
+    return ajax('board', 'put', {
+      data: {
+        title,
+        content,
+        board_id: parameter
+      }
+    })
+  },
+  deleteBoard(parameter){
+    return ajax('board', 'delete', {
+      params: {
+        board_id: parameter
+      }
+    })
+  },
+  postComment(comment, board_id, created_by_id){
+    return ajax('comment', 'post',{
+      data:{
+        comment,
+        board_id,
+        created_by_id
+      }
+    })
+  },
+  putComment(comment_id,comment){
+    return ajax('comment', 'put', {
+      data: {
+        comment_id,
+        comment
+      }
+    })
+  },
+  deleteComment(comment_id){
+    return ajax('comment', 'delete', {
+      params: {
+        comment_id
+      }
+    })
+  },
 }
 
 /**
