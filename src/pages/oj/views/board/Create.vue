@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="background:white;">
     <el-input v-model="title" placeholder="제목을 입력해주세요" />
     <el-input
       type="textarea"

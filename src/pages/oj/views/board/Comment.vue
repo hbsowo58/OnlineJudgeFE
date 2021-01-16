@@ -40,7 +40,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .comment{
   position: relative;
   text-align: center;

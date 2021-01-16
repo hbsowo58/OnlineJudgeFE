@@ -14,7 +14,7 @@
 
       <FormItem prop="userProfileName">
         <Input v-model="formRegister.real_name" :placeholder="$t('m.real_name')" size="large"
-        @on-enter="handleRegister">
+      >
         <Icon type="ios-contact-outline" slot="prepend"></Icon>
         </Input>
       </FormItem>
@@ -148,7 +148,6 @@
           passwordAgain: '',
           email: '',
           captcha: '',
-          // real_name: '',
           real_name: ''
         },
         ruleRegister: {
@@ -174,7 +173,7 @@
           //   {required: true, trigger: 'blur', min: 1, max: 10}
           // ],
           real_name: [
-            {required: true, trigger: 'blur', min: 1, max: 10}
+            {required: true, trigger: 'blur'}
           ]
         }
       }
