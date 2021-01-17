@@ -89,7 +89,7 @@
           this.profile = res.data.data
           this.getSolvedProblems()
           let registerTime = time.utcToLocal(this.profile.user.create_time, 'YYYY-MM-D')
-          console.log('The guy registered at ' + registerTime + '.')
+          // console.log('The guy registered at ' + registerTime + '.')
         })
       },
       getSolvedProblems () {

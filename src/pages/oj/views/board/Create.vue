@@ -1,20 +1,25 @@
 <template>
-  <div class="background:white;">
-    <el-input v-model="title" placeholder="제목을 입력해주세요" />
-    <el-input
-      type="textarea"
-      autosize
-      placeholder="내용을 입력해주세요"
-      v-model="content"
-    />
+  <el-container style="background:white; padding: 0 20%;">
+    <el-header>
+      <div class="detail_title">게시글 작성</div>
+      <el-input v-model="title" placeholder="제목을 입력해주세요" />
+    
+    </el-header>
+    <el-main>
+        <el-input
+        type="textarea"
+        autosize
+        placeholder="내용을 입력해주세요"
+        v-model="content"
+      />
 
-    <el-button v-if="index" @click="update">수정</el-button>
-    <el-button v-else @click="write">작성</el-button>
-
+      <el-button v-if="index" @click="update">수정</el-button>
+      <el-button v-else @click="write">작성</el-button>
+    </el-main>
     <!--
       <el-button @click="index !== undefined ? update() : write()">{{index !== undefined ? "수정" : "작성"}}</el-button>
     -->
-  </div>
+  </el-container>
 </template>
 
 <script>
@@ -42,9 +47,9 @@ export default {
       // console.log(this.board);
       this.index = this.$route.params["board_id"];
       await this.getBoard(this.$route.params["board_id"]);
-      console.log(this.user);
-      console.log(this.board.board.created_by);
-      console.log(this.user.profile.user.id);
+      // console.log(this.user);
+      // console.log(this.board.board.created_by);
+      // console.log(this.user.profile.user.id);
       // console.log(this.board);
       this.title = this.board.board.title;
       this.content = this.board.board.content;
@@ -83,9 +88,14 @@ export default {
 </script>
 
 <style lang="less">
+.el-header {
+  background: white;
+  padding: 40px 40px;
+  height: 100% !important;
+}
 .el-input input {
-  margin-top: 100px;
-  margin-bottom: 20px;
+  // margin-top: 100px;
+  // margin-bottom: 20px;
 }
 
 // .el-textarea{
@@ -94,7 +104,13 @@ export default {
 
 .el-textarea__inner {
   margin-bottom: 20px;
-  min-height: 100px !important;
+  min-height: 50vh !important;
   // background: red;
 }
+.detail_title {
+  font-size: 21px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
 </style>

@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div  style="background-color:white">
     
     <!-- {{board['board']}} -->
-    <el-container>
+    <el-container >
       <el-header>
       <!-- Q&A -->
         <div class="detail_title">Q&A</div>
@@ -22,8 +22,8 @@
           <div class="detail_optionbtn">
             <el-button @click="list">목록</el-button>
 
-            <el-button @click="updateData" v-if="user.profile.user.id ===board['board'].created_by">수정</el-button>
-            <el-button @click="deleteBoard" v-if="user.profile.user.id ===board['board'].created_by">삭제</el-button>
+            <el-button @click="updateData" v-if="user.profile.user && user.profile.user.id ===board['board'].created_by">수정</el-button>
+            <el-button @click="deleteBoard" v-if="user.profile.user && user.profile.user.id ===board['board'].created_by">삭제</el-button>
           </div>
           <p>{{ board["board"].content }}</p>
         </div>
@@ -44,14 +44,14 @@
                 <el-button
                   class="detail_comment_button"
                   @click="chageflag(c.id);"
-                  v-if="commentIndex !== c.id && user.profile.user.id === c.created_by"
+                  v-if="commentIndex !== c.id && user.profile.user && user.profile.user.id === c.created_by"
                   >수정</el-button
                 >
                  <!-- v-if="user.profile.user.id ===board['board'].created_by" -->
                 <el-button
                   class="detail_comment_button"
                   @click="deleteComment(c.id);"
-                  v-if="user.profile.user.id === c.created_by"
+                  v-if="user.profile.user &&user.profile.user.id === c.created_by"
                   >삭제</el-button
                 >
               </div>
@@ -101,10 +101,10 @@ export default {
     ...mapState(["board", "user"])
   },
   async mounted() {
-    console.log(time);
+    // console.log(time);
     // await this.getData();
     const reuslt = await this.getBoard(this.$route.params["board_id"]);
-    console.log(this.board.board);
+    // console.log(this.board.board);
     // api.postBoard("치킨","jmt", loginId);
     // const test1 = await api.putBoard("믿고있었다고", "젠장!!!",parameter);
     // console.log(test1);
@@ -204,8 +204,9 @@ export default {
 .el-input input {
   border-top: 1px solid #eeeeee;
 }
-body > .el-container {
+body  .el-container {
   margin-bottom: 40px;
+  padding: 30px 20%;
 }
 .detail-header-wrapper {
   display: flex;

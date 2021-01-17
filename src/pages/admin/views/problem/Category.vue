@@ -9,6 +9,7 @@
         </el-input>
       </div>
       <el-table
+        empty-text="검색한 정보가 없습니다"
         v-loading="loading"
         element-loading-text="loading"
         ref="table"

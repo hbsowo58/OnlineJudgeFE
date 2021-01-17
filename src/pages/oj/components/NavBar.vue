@@ -86,7 +86,8 @@
 
       <Menu-item name="/board">
         <Icon type="ios-pulse-strong"></Icon>
-        <span>{{$t('게시판')}}</span>
+        <!-- <span>{{$t('게시판')}}</span> -->
+        <span>게시판</span>
       </Menu-item>
 
       <!-- <Menu-item name="/board" v-if="user.profile.user.email.indexOf("samsung") > 0">

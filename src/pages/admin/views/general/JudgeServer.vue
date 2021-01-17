@@ -5,6 +5,7 @@
     </Panel>
     <Panel :title="$t('m.Judge_Server_Info')">
       <el-table
+        empty-text="검색한 정보가 없습니다"
         :data="servers"
         :default-expand-all="true"
         border>

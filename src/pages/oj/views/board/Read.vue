@@ -2,7 +2,7 @@
   <el-container class="board-container">
     <el-header>Q&A</el-header>
     <el-main>
-      <el-table border @cell-click="detail" :data="data">
+      <el-table border @cell-click="detail" :data="data" empty-text="검색한 정보가 없습니다">
         <!--
           <el-table-column
           type="selection"
@@ -46,12 +46,16 @@
     <el-footer>
       <div class="page-wrapper">
         <el-button type="primary" @click="write">글쓰기</el-button>
+        <div class="serach-wrapper">
+          <el-input v-model="keyword" prefix-icon="el-icon-search" placeholder="제목 / 내용 검색"></el-input>
+          <el-button type="primary" @click="getBoardList">검색</el-button>
+        </div>
         <el-pagination
           class="page"
           layout="prev, pager, next"
           :page-size="10"
           :current-page.sync="currentPage"
-          @current-change="test"
+          @current-change="getBoardList"
           :total="total"
         >
         </el-pagination>
@@ -71,14 +75,16 @@ export default {
     return {
       total: 0,
       data: [],
-      currentPage: 1
+      currentPage: 1,
+      keyword:""
     };
   },
   async mounted() {
     // const response = await api.getBoardList({limit:10, offset:30});
-    this.test();
-    const data = this.user.profile.user.email;
-    console.log(data);
+    this.getBoardList();
+    // console.log(this.user.profile)
+    // const data = this.user.profile.user.email;
+    // console.log(data);
     // if(data.indexOf() < -1){
     //   this.$router.push("/");
     // }
@@ -88,16 +94,17 @@ export default {
     ...mapState(["user"])
   },
   methods: {
-    async test() {
+    async getBoardList() {
       const response = await api.getBoardList({
         limit: 10,
-        offset: (this.currentPage - 1) * 10
+        offset: (this.currentPage - 1) * 10,
+        keyword: this.keyword
       });
       const data = Object.entries(response).find(el => el[0] === "data");
-      console.log(data);
+      // console.log(data);
       this.total = data[1]["data"]["total"];
       const result = data[1]["data"]["results"];
-      console.log(result);
+      // console.log(result);
       this.data = result;
     },
     write() {
@@ -106,14 +113,14 @@ export default {
       });
     },
     detail(id, column, cell, event) {
-      console.log(column.property);
+      // console.log(column.property);
       if (column.property === "title") {
         this.$router.push(`/board/${id.id}`);
       }
-      console.log(id);
-      console.log(column);
-      console.log(cell);
-      console.log(event);
+      // console.log(id);
+      // console.log(column);
+      // console.log(cell);
+      // console.log(event);
     }
   }
 };
@@ -134,9 +141,14 @@ export default {
 .el-table td {
   padding: 6px 0 !important;
 }
-.page-wrapper {
-  
+.serach-wrapper{
   display: flex;
+  align-items: center;
+  width: 40%;
+}
+.page-wrapper {
+  display: flex;
+  align-items: center;
   justify-content: space-between;
 }
 </style>

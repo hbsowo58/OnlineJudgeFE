@@ -30,7 +30,7 @@ export default {
   methods:{
       ...mapActions(['getBoard']),
       async postComment(){
-          console.log(this.profile);
+          // console.log(this.profile);
           const parameter = this.$route.params["board_id"];
           await api.postComment(this.input, parameter, this.user.profile.user.id)
           this.getBoard(this.$route.params["board_id"]);

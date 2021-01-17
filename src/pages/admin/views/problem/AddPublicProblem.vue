@@ -5,7 +5,7 @@
       placeholder="Keywords"
       prefix-icon="el-icon-search">
     </el-input>
-    <el-table :data="problems" v-loading="loading">
+    <el-table empty-text="검색한 정보가 없습니다" :data="problems" v-loading="loading">
       <el-table-column
         label="ID"
         width="100"

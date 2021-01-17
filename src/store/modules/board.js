@@ -17,10 +17,10 @@ const mutations = {
 
 const actions = {
   async getBoard({ commit }, payload) {
-    console.log(payload)
+    // console.log(payload)
     const response = await api.getBoardDetail(payload);
     const result = Object.entries(response).find(el => el[0] === 'data');
-    console.log(result[1]['data']);
+    // console.log(result[1]['data']);
     // console.log(result['data']);
     commit(types.POST_COMMENT, result[1]['data']);
   }

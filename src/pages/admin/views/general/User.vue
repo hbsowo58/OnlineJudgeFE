@@ -15,6 +15,7 @@
         </el-row>
       </div>
       <el-table
+        empty-text="검색한 정보가 없습니다"
         v-loading="loadingTable"
         element-loading-text="loading"
         @selection-change="handleSelectionChange"
