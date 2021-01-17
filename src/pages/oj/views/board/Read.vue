@@ -82,7 +82,6 @@ export default {
   async mounted() {
     // const response = await api.getBoardList({limit:10, offset:30});
     this.getBoardList();
-    // console.log(this.user.profile)
     // const data = this.user.profile.user.email;
     // console.log(data);
     // if(data.indexOf() < -1){

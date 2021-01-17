@@ -84,10 +84,10 @@
         </Menu-item>
       </Submenu>
 
-      <Menu-item name="/board">
-        <Icon type="ios-pulse-strong"></Icon>
+      <Menu-item name="/board" v-if="user['email'] !== undefined && checkSamsung(user['email'])">
+        <Icon type="ios-contact"></Icon>
         <!-- <span>{{$t('게시판')}}</span> -->
-        <span>게시판</span>
+        <span class="board">게시판</span>
       </Menu-item>
 
       <!-- <Menu-item name="/board" v-if="user.profile.user.email.indexOf("samsung") > 0">
@@ -164,6 +164,15 @@
           visible: true,
           mode: mode
         })
+      },
+      checkSamsung (email) {
+        if (email === null) return 1
+        //root
+        if(email.indexOf('samsung') > 1){
+          return 1
+        }
+        return 0
+        //samsung 포함
       }
     },
     computed: {
@@ -200,10 +209,10 @@
 
     .oj-menu {
       background: #fdfdfd;
+      font-family: 'Noto Sans KR', sans-serif;
       .menu-title{
         // background:red;
         font-size:16px;
-        font-family: 'Noto Sans KR', sans-serif;
         font-weight: 500;
         letter-spacing:-1px;
         margin-left:-7px;
@@ -219,6 +228,11 @@
           height:30px;
           font-size:16px;
         }
+      }
+      .board{
+        // background:red;
+        font-size:16px;
+        font-weight: 500;
       }
     }
 
