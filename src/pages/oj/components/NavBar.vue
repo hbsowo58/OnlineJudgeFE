@@ -84,7 +84,7 @@
         </Menu-item>
       </Submenu>
 
-      <Menu-item name="/board" v-if="user['email'] !== undefined && checkSamsung(user['email'])">
+      <Menu-item name="/board" v-if=" isSuperAdmin || user['email'] !== undefined && checkSamsung(user['email'])">
         <Icon type="ios-contact"></Icon>
         <!-- <span>{{$t('게시판')}}</span> -->
         <span class="board">게시판</span>
