@@ -3,16 +3,11 @@
     <el-header>
       <div class="detail_title">게시글 작성</div>
       <el-input v-model="title" placeholder="제목을 입력해주세요" />
-    
     </el-header>
     <el-main>
-        <el-input
-        type="textarea"
-        autosize
-        placeholder="내용을 입력해주세요"
-        v-model="content"
-      />
+      <Simditor v-model="content" placeholder=""></Simditor>
 
+      <div style="margin-top:50px;"></div>
       <el-button v-if="index" @click="update">수정</el-button>
       <el-button v-else @click="write">작성</el-button>
     </el-main>
@@ -23,11 +18,15 @@
 </template>
 
 <script>
+import Simditor from "@/pages/admin/components/Simditor";
 import api from "@oj/api";
 import data from "../data";
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapGetters, mapState } from "vuex";
 export default {
   name: "Create",
+  components: {
+    Simditor
+  },
   data() {
     const index = this.$route.params.contentId;
     return {
@@ -39,8 +38,8 @@ export default {
     };
   },
   computed: {
-    ...mapState(["board"]),
-    ...mapState(["user"])
+    ...mapState(["board", "user"]),
+    ...mapGetters(["isSuperAdmin"])
   },
   async mounted() {
     if (this.$route.params["board_id"]) {
@@ -53,7 +52,11 @@ export default {
       // console.log(this.board);
       this.title = this.board.board.title;
       this.content = this.board.board.content;
-      if (this.board.board.created_by !== this.user.profile.user.id) {
+      console.log(this.isSuperAdmin);
+      if (
+        !this.isSuperAdmin &&
+        this.board.board.created_by !== this.user.profile.user.id
+      ) {
         this.$router.push({
           path: "/board"
         });
@@ -64,23 +67,76 @@ export default {
   methods: {
     ...mapActions(["getBoard"]),
     async write() {
-      await api.postBoard(this.title, this.content, this.user.profile.user.id);
-      this.$router.push({
-        path: "/board"
-      });
-    },
-    async update() {
-      // 수정 방지 처리
-
-      if (this.board.board.created_by === this.user.profile.user.id) {
-        const test = await api.putBoard(
+      if (
+        this.title.length > 0 &&
+        this.title.length < 100 &&
+        this.content.length > 0 &&
+        this.content.length < 1000000
+      ) {
+        await api.postBoard(
           this.title,
           this.content,
-          this.$route.params["board_id"]
+          this.user.profile.user.id
         );
+        this.$router.push({
+          path: "/board"
+        });
+      } else if (this.title.length === 0) {
+        this.$error("제목을 입력해주세요");
+        return;
+      } else if (this.title.length >= 100) {
+        // console.log(this.title.length);
+        this.$error("제목은 100자 이내로 입력해주세요");
+        return;
+      } else if (this.content.length === 0) {
+        this.$error("내용을 입력해주세요");
+        return;
+      } else if (this.content.length > 1000000) {
+        this.$error("내용은 1메가 이상 업로드 할 수 없습니다.");
+        return;
       }
-      this.$router.push({
-        path: `/board/${this.$route.params["board_id"]}`
+    },
+    update() {
+      if (this.title.length === 0) {
+        this.$error("제목을 입력해주세요");
+        return;
+      } else if (this.title.length >= 20) {
+        // console.log(this.title.length);
+        this.$error("제목은 20자 이내로 입력해주세요");
+        return;
+      } else if (this.content.length === 0) {
+        this.$error("내용을 입력해주세요");
+        return;
+      } else if (this.content.length > 1000000) {
+        this.$error("내용은 1메가 이상 업로드 할 수 없습니다.");
+        return;
+      }
+      // 수정 방지 처리
+      this.$Modal.confirm({
+        content: "게시글 수정을 하시겠습니까?",
+        onOk: async () => {
+          if (
+            this.isSuperAdmin ||
+            this.board.board.created_by === this.user.profile.user.id
+          ) {
+            if (
+              this.title.length > 0 &&
+              this.title.length < 20 &&
+              this.content.length > 0 &&
+              this.content.length < 1000000
+            ) {
+              const test = await api.putBoard(
+                this.title,
+                this.content,
+                this.$route.params["board_id"]
+              );
+              this.$router.push({
+                path: `/board/${this.$route.params["board_id"]}`
+              });
+            }
+          }
+        },
+        onCancel: () => {}
       });
     }
   }
@@ -112,5 +168,4 @@ export default {
   font-weight: 500;
   margin-bottom: 10px;
 }
-
 </style>

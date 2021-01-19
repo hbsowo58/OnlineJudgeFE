@@ -26,9 +26,12 @@ UploadFile = (function (_super) {
 
   UploadFile.i18n = {
     'zh-CN': {
-      uploadfile: '上传文件'
+      uploadfile: '파일 업로드'
     },
     'en-US': {
+      uploadfile: 'upload file'
+    },
+    'ko-KR': {
       uploadfile: 'upload file'
     }
   };

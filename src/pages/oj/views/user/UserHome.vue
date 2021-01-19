@@ -42,14 +42,15 @@
               </div>
             </Poptip>
           </div>
-          <p v-else>{{$t('m.UserHomeIntro')}}</p>
+          <!-- <p v-else>{{$t('m.UserHomeIntro')}}</p> -->
+          <p v-else>두뇌 건강 및 치매 예방의 최고의 방법은 Problem Solving 입니다.</p>
           <div class="btns">
             <div class="problem-btn" v-for="problemID of problems" :key="problemID">
               <Button type="ghost" @click="goProblem(problemID)">{{problemID}}</Button>
             </div>
           </div>
         </div>
-        <div id="icons">
+        <!-- <div id="icons">
           <a :href="profile.github">
             <Icon type="social-github-outline" size="30"></Icon>
           </a>
@@ -59,7 +60,7 @@
           <a :href="profile.blog">
             <Icon class="icon" type="ios-world-outline" size="30"></Icon>
           </a>
-        </div>
+        </div> -->
       </div>
     </Card>
   </div>

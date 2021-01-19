@@ -1,14 +1,15 @@
 <template>
-  <div  style="background-color:white">
-    
+  <div style="background-color:white">
     <!-- {{board['board']}} -->
-    <el-container >
+    <el-container>
       <el-header>
-      <!-- Q&A -->
-        <div class="detail_title">Q&A</div>
+        <!-- Q&A -->
+        <div class="detail_title">질문게시판</div>
         <div class="detail-header-wrapper">
           <div></div>
-          <div class="detail_title" style="text-align:center;margin-left: 15%;">{{board["board"].title}}</div>
+          <div class="detail_title" style="text-align:center;margin-left: 15%;">
+            {{ board["board"].title }}
+          </div>
           <div class="detail_subtitle">
             <span> 작성자 : {{ board["board"].real_name }} </span>
             <span> 작성일 : {{ toLocal(board["board"].created_time) }} </span>
@@ -22,10 +23,26 @@
           <div class="detail_optionbtn">
             <el-button @click="list">목록</el-button>
 
-            <el-button @click="updateData" v-if="user.profile.user && user.profile.user.id ===board['board'].created_by">수정</el-button>
-            <el-button @click="deleteBoard" v-if="user.profile.user && user.profile.user.id ===board['board'].created_by">삭제</el-button>
+            <el-button
+              @click="updateData"
+              v-if="
+                isSuperAdmin ||
+                  (user.profile.user &&
+                    user.profile.user.id === board['board'].created_by)
+              "
+              >수정</el-button
+            >
+            <el-button
+              @click="deleteBoard"
+              v-if="
+                isSuperAdmin ||
+                  (user.profile.user &&
+                    user.profile.user.id === board['board'].created_by)
+              "
+              >삭제</el-button
+            >
           </div>
-          <p>{{ board["board"].content }}</p>
+          <p v-html="board['board'].content"></p>
         </div>
       </el-main>
       <el-footer>
@@ -44,14 +61,25 @@
                 <el-button
                   class="detail_comment_button"
                   @click="chageflag(c.id);"
-                  v-if="commentIndex !== c.id && user.profile.user && user.profile.user.id === c.created_by"
+                  v-if="
+                    isSuperAdmin ||
+                      (commentIndex !== c.id &&
+                        user.profile.user &&
+                        user.profile.user.id === c.created_by)
+                  "
                   >수정</el-button
                 >
-                 <!-- v-if="user.profile.user.id ===board['board'].created_by" -->
+                <!--
+                  v-if="user.profile.user.id ===board['board'].created_by"
+                -->
                 <el-button
                   class="detail_comment_button"
                   @click="deleteComment(c.id);"
-                  v-if="user.profile.user &&user.profile.user.id === c.created_by"
+                  v-if="
+                    isSuperAdmin ||
+                      (user.profile.user &&
+                        user.profile.user.id === c.created_by)
+                  "
                   >삭제</el-button
                 >
               </div>
@@ -80,7 +108,7 @@
 import time from "@/utils/time";
 import api from "@oj/api";
 import Comment from "./Comment";
-import { mapState, mapMutations, mapActions } from "vuex";
+import { mapState, mapMutations, mapActions, mapGetters } from "vuex";
 // import data from '../data'
 export default {
   name: "Detail",
@@ -98,6 +126,7 @@ export default {
     };
   },
   computed: {
+    ...mapGetters(["isSuperAdmin"]),
     ...mapState(["board", "user"])
   },
   async mounted() {
@@ -122,7 +151,7 @@ export default {
     ...mapActions(["getBoard"]),
 
     toLocal(data) {
-      const result = time.utcToLocal(data, "YYYY-MM-D");
+      const result = time.utcToLocal(data, "YYYY년 M월 D일 HH시 mm분");
 
       return result;
     },
@@ -137,11 +166,18 @@ export default {
       // console.log(result);
       // this.POST_COMMENT(result);
     },
-    async deleteBoard() {
-      await api.deleteBoard(this.$route.params["board_id"]);
-      this.$router.push({
-        path: "/board"
+     deleteBoard() {
+      this.$Modal.confirm({
+        content: "게시글을 삭제하시겠습니까?",
+        onOk: async () => {
+           await api.deleteBoard(this.$route.params["board_id"]);
+          this.$router.push({
+          path: "/board"
+          });
+        },
+        onCancel: () => {}
       });
+     
     },
     updateData() {
       this.$router.push(`/create/${this.$route.params["board_id"]}`);
@@ -156,9 +192,15 @@ export default {
         path: "/create"
       });
     },
-    async deleteComment(id) {
-      const hello1 = await api.deleteComment(id);
-      const reuslt = await this.getBoard(this.$route.params["board_id"]);
+    deleteComment(id) {
+      this.$Modal.confirm({
+        content: "댓글을 삭제하시겠습니까?",
+        onOk: async () => {
+          const hello1 = await api.deleteComment(id);
+          const reuslt = await this.getBoard(this.$route.params["board_id"]);
+        },
+        onCancel: () => {}
+      });
     },
     chageflag(id) {
       this.flag = true;
@@ -166,12 +208,22 @@ export default {
       // await api.putComment(comment_id, content)
     },
     async changeComment(comment_id) {
+      if (!this.comment.length) {
+        this.$error("댓글을 입력해주세요");
+        return;
+      }
+      this.$Modal.confirm({
+        content: "댓글을 수정하시겠습니까?",
+        onOk: async () => {
+          await api.putComment(comment_id, this.comment);
+          const reuslt = await this.getBoard(this.$route.params["board_id"]);
+          this.flag = false;
+          this.comment = "";
+          this.commentIndex = "";
+        },
+        onCancel: () => {}
+      });
       // console.log(this.comment)
-      await api.putComment(comment_id, this.comment);
-      const reuslt = await this.getBoard(this.$route.params["board_id"]);
-      this.flag = false;
-      this.comment = "";
-      this.commentIndex = "";
     }
   }
 };
@@ -204,7 +256,7 @@ export default {
 .el-input input {
   border-top: 1px solid #eeeeee;
 }
-body  .el-container {
+body .el-container {
   margin-bottom: 40px;
   padding: 30px 20%;
 }

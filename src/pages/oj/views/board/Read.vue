@@ -1,6 +1,6 @@
 <template>
   <el-container class="board-container">
-    <el-header>Q&A</el-header>
+    <el-header>질문게시판</el-header>
     <el-main>
       <el-table border @cell-click="detail" :data="data" empty-text="검색한 정보가 없습니다">
         <!--
@@ -10,7 +10,9 @@
           >
           </el-table-column>
         -->
-        <el-table-column type="index" align="center" width="140px">
+        <!-- <el-table-column type="index" align="center" width="140px"> -->
+        <!-- </el-table-column> -->
+        <el-table-column prop="id" align="center" width="140px">
         </el-table-column>
 
         <el-table-column prop="title" label="제목" align="center">
@@ -31,7 +33,8 @@
           align="center"
         >
           <template slot-scope="scope">
-            {{ scope.row.created_time | localtime }}
+            {{ scope.row.created_time && toLocal(scope.row.created_time) }}
+            <div>({{scope.row.created_time && toLocalTime(scope.row.created_time)}})</div>
             <!--
               <a href='#' @click="clickMethod(props.row.data)" >{{props.row.maskingData}}</a>
             -->
@@ -47,7 +50,7 @@
       <div class="page-wrapper">
         <el-button type="primary" @click="write">글쓰기</el-button>
         <div class="serach-wrapper">
-          <el-input v-model="keyword" prefix-icon="el-icon-search" placeholder="제목 / 내용 검색"></el-input>
+          <el-input v-model="keyword" prefix-icon="el-icon-search" placeholder="제목 / 내용 / 이름 검색"></el-input>
           <el-button type="primary" @click="getBoardList">검색</el-button>
         </div>
         <el-pagination
@@ -93,6 +96,15 @@ export default {
     ...mapState(["user"])
   },
   methods: {
+    toLocalTime(data){
+       const result = time.utcToLocal(data, "HH시 mm분");
+      return result;
+    },
+     toLocal(data) {
+      const result = time.utcToLocal(data, "YYYY년 M월 D일");
+
+      return result;
+    },
     async getBoardList() {
       const response = await api.getBoardList({
         limit: 10,

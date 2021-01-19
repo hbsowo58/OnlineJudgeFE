@@ -25,9 +25,9 @@ export const m = {
   Statistic: '정답률',
   Close: 'Close',
   View_Contest: '강의 HOME',
-  Are_you_sure_you_want_to_reset_your_code: 'Are you sure you want to reset your code?',
-  Code_can_not_be_empty: 'Code can not be empty',
-  Submit_code_successfully: 'Submit code successfully',
+  Are_you_sure_you_want_to_reset_your_code: '소스 코드가 지워집니다. 새로고침을 하시겠습니까?',
+  Code_can_not_be_empty: '코드를 입력해주세요.',
+  Submit_code_successfully: '제출이 완료되었습니다.',
   You_have_solved_the_problem: 'You have solved the problem',
   Submitted_successfully: 'Submitted successfully',
   You_have_submitted_a_solution: 'You have submitted a solution.',
@@ -36,14 +36,14 @@ export const m = {
   // About.vue
   Compiler: 'Compiler',
   Result_Explanation: '결과 설명',
-  Pending_Judging_Description: '곧 채점 될 예정입니다. 잠시만 기다려주세요.',
-  Compile_Error_Description: '소스코드 컴파일에 실패했습니다. 컴파일 오류 내용을 확인하세요.',
+  Pending_Judging_Description: '채점 예정입니다.',
+  Compile_Error_Description: '컴파일에 실패했습니다. 오류 내용을 확인 해 주세요.',
   Accepted_Description: 'Congratulations. Your solution is correct.',
-  Wrong_Answer_Description: "Your program's output doesn't match judger's answer.",
-  Runtime_Error_Description: '프로그램이 비정상적으로 종료되었습니다. segment fault, divided by zero 와 같은 에러가 있는지 확인 해주세요.',
-  Time_Limit_Exceeded_Description: '시간초과 되었습니다.',
+  Wrong_Answer_Description: "결과가 출력되었지만, 정답과 다릅니다.",
+  Runtime_Error_Description: '런타임 에러로, segment fault, divided by zero 등 다양한 이유가 있을 수 있습니다. 에러 힌트는 제공되지 않습니다.',
+  Time_Limit_Exceeded_Description: '시간 제한에 초과되었습니다. 더 빠른 알고리즘을 사용 해 주세요.',
   Memory_Limit_Exceeded_Description: '과도한 변수 or 배열 사용으로 메모리가 초과되었습니다.',
-  System_Error_Description: '채점 시스템에 오류가 발생했습니다. 관리자에게 문의하세요.',
+  System_Error_Description: '채점 시스템에 문제가 발생했습니다. 관리자에게 문의 부탁드립니다.',
   // ACMContestRank.vue
   Menu: '메뉴',
   Chart: '차트',
@@ -125,9 +125,9 @@ export const m = {
   Rule: 'Rule',
   OI: 'OI',
   ACM: 'ACM',
-  Underway: '해결',
-  Not_Started: '시작안함',
-  Ended: '틀림',
+  Underway: '강의 진행중',
+  Not_Started: '강의 예정',
+  Ended: '강의 종료',
   No_contest: '로그인 필요',
   Please_login_first: '로그인이 필요합니다.',
   // ContestProblemList
@@ -266,5 +266,5 @@ export const m = {
   UserHomeserSubmissions: 'Submissions',
   UserHomeScore: 'Score',
   List_Solved_Problems: 'List of solved problems',
-  UserHomeIntro: 'The guy is so lazy that has not solved any problem yet.'
+  UserHomeIntro: '두뇌 건강 및 치매 예방의 최고의 방법은 Problem Solving 입니다.'
 }
