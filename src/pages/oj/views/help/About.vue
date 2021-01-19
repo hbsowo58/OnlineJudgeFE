@@ -80,7 +80,7 @@ export default {
   },
   beforeRouteEnter(to, from, next) {
     utils.getLanguages().then(languages => {
-      console.log(languages);
+  
       next(vm => {
         vm.languages = languages;
       });

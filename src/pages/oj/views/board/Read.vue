@@ -2,7 +2,12 @@
   <el-container class="board-container">
     <el-header>질문게시판</el-header>
     <el-main>
-      <el-table border @cell-click="detail" :data="data" empty-text="검색한 정보가 없습니다">
+      <el-table
+        border
+        @cell-click="detail"
+        :data="data"
+        empty-text="검색한 정보가 없습니다"
+      >
         <!--
           <el-table-column
           type="selection"
@@ -15,7 +20,12 @@
         <el-table-column prop="id" align="center" width="140px">
         </el-table-column>
 
-        <el-table-column prop="title" label="제목" align="center">
+        <el-table-column prop="title" label="제목" align="left">
+          <template slot-scope="scope">
+            <span style="padding-left:30px;"
+              >{{ scope.row.title }} <span v-if="scope.row.board.length">[{{ scope.row.board.length }}]</span></span
+            >
+          </template>
         </el-table-column>
 
         <el-table-column
@@ -34,7 +44,11 @@
         >
           <template slot-scope="scope">
             {{ scope.row.created_time && toLocal(scope.row.created_time) }}
-            <div>({{scope.row.created_time && toLocalTime(scope.row.created_time)}})</div>
+            <div>
+              ({{
+                scope.row.created_time && toLocalTime(scope.row.created_time)
+              }})
+            </div>
             <!--
               <a href='#' @click="clickMethod(props.row.data)" >{{props.row.maskingData}}</a>
             -->
@@ -50,7 +64,11 @@
       <div class="page-wrapper">
         <el-button type="primary" @click="write">글쓰기</el-button>
         <div class="serach-wrapper">
-          <el-input v-model="keyword" prefix-icon="el-icon-search" placeholder="제목 / 내용 / 이름 검색"></el-input>
+          <el-input
+            v-model="keyword"
+            prefix-icon="el-icon-search"
+            placeholder="제목 / 내용 / 이름 검색"
+          ></el-input>
           <el-button type="primary" @click="getBoardList">검색</el-button>
         </div>
         <el-pagination
@@ -70,7 +88,7 @@
 <script>
 import time from "@/utils/time";
 import api from "@oj/api";
-import {mapState} from "vuex"
+import { mapState } from "vuex";
 // import data from '../data'
 export default {
   name: "Read",
@@ -79,7 +97,7 @@ export default {
       total: 0,
       data: [],
       currentPage: 1,
-      keyword:""
+      keyword: ""
     };
   },
   async mounted() {
@@ -90,17 +108,16 @@ export default {
     // if(data.indexOf() < -1){
     //   this.$router.push("/");
     // }
-    
   },
-  computed:{
+  computed: {
     ...mapState(["user"])
   },
   methods: {
-    toLocalTime(data){
-       const result = time.utcToLocal(data, "HH시 mm분");
+    toLocalTime(data) {
+      const result = time.utcToLocal(data, "HH시 mm분");
       return result;
     },
-     toLocal(data) {
+    toLocal(data) {
       const result = time.utcToLocal(data, "YYYY년 M월 D일");
 
       return result;
@@ -112,10 +129,10 @@ export default {
         keyword: this.keyword
       });
       const data = Object.entries(response).find(el => el[0] === "data");
-      // console.log(data);
+      console.log(data);
       this.total = data[1]["data"]["total"];
       const result = data[1]["data"]["results"];
-      // console.log(result);
+      console.log(result[0].board.length);
       this.data = result;
     },
     write() {
@@ -138,21 +155,21 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.el-header{
+.el-header {
   font-size: 21px;
   font-weight: 500;
   padding: 19px 31px;
   height: 100% !important;
 }
-.board-container{
+.board-container {
   // width: 80%;
-  margin:0 auto;
+  margin: 0 auto;
   background: white;
 }
 .el-table td {
   padding: 6px 0 !important;
 }
-.serach-wrapper{
+.serach-wrapper {
   display: flex;
   align-items: center;
   width: 40%;
@@ -161,5 +178,13 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.board-container > * {
+  width: 80%;
+  margin: 0 auto;
+}
+.for-align {
+  width: 80%;
+  margin: 0 auto;
 }
 </style>
