@@ -46,7 +46,7 @@
 </template>
 <script>
   import moment from 'moment'
-  import { mapActions } from 'vuex'
+  import { mapActions, mapGetters } from 'vuex'
 
   import Pagination from '@oj/components/Pagination'
   import ContestRankMixin from './contestRankMixin'
