@@ -148,7 +148,7 @@
       },
       checkPassword () {
         if (this.contestPassword === '') {
-          this.$error('Password can\'t be empty')
+          this.$error('비밀 번호를 입력해 주세요.')
           return
         }
         this.btnLoading = true

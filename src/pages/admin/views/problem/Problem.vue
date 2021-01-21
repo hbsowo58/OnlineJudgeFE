@@ -209,7 +209,7 @@
           </el-col>
 
           <el-col :span="6">
-            <el-form-item :label="$t('m.IOMode')">
+            <el-form-item label="IOMode">
               <el-radio-group v-model="problem.io_mode.io_mode">
                 <el-radio label="Standard IO">Standard IO</el-radio>
                 <el-radio label="File IO">File IO</el-radio>

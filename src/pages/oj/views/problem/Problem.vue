@@ -153,7 +153,7 @@
             <p>{{problem.memory_limit}}MB</p></li>
           <li>
           <li>
-            <p>{{$t('m.IOMode')}}</p>
+            <p>IO Mode</p>
             <p>{{problem.io_mode.io_mode}}</p>
           </li>
           <li>
@@ -204,7 +204,7 @@
 </template>
 
 <script>
-  import {mapGetters, mapActions} from 'vuex'
+  import {mapGetters, mapActions, mapState} from 'vuex'
   import {types} from '../../../../store'
   import CodeMirror from '@oj/components/CodeMirror.vue'
   import storage from '@/utils/storage'
@@ -222,6 +222,7 @@
       CodeMirror
     },
     mixins: [FormMixin],
+    
     data () {
       return {
         statusVisible: false,
@@ -263,6 +264,9 @@
         }
       }
     },
+    computed: {
+
+    },
     beforeRouteEnter (to, from, next) {
       let problemCode = storage.get(buildProblemCodeKey(to.params.problemID, to.params.contestID))
       if (problemCode) {
@@ -275,13 +279,17 @@
         next()
       }
     },
+
     mounted () {
       this.$store.commit(types.CHANGE_CONTEST_ITEM_VISIBLE, {menu: false})
-      this.init()
+      this.init();
+      // console.log(this.$store.getters.profile.major);
     },
+
     methods: {
       ...mapActions(['changeDomTitle']),
       init () {
+   
         this.$Loading.start()
         this.contestID = this.$route.params.contestID
         this.problemID = this.$route.params.problemID
@@ -293,7 +301,16 @@
           api.submissionExists(problem.id).then(res => {
             this.submissionExists = res.data.data
           })
-          problem.languages = problem.languages.sort()
+
+          problem.languages = problem.languages.reduce((acc,cur) => {
+            if (cur !== "Golang" && cur !== "Python2"){
+      
+              acc.push(cur);
+            }
+            return acc;
+          },[]).sort();
+          
+          // problem.languages = problem.languages.sort()
           this.problem = problem
           this.changePie(problem)
 
@@ -302,7 +319,9 @@
             return
           }
           // try to load problem template
-          this.language = this.problem.languages[0]
+          // this.language = this.problem.languages[0]
+          this.language = this.$store.getters.profile.major
+          
           let template = this.problem.template
           if (template && template[this.language]) {
             this.code = template[this.language]

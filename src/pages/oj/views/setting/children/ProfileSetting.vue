@@ -172,7 +172,7 @@
           outputType: 'png'
         },
         languages: languages,
-        majors: ['C/C++', 'Java', 'Python3'],
+        majors: ['C', 'C++', 'Java', 'Python3'],
         formProfile: {
           real_name: '',
           mood: '',
