@@ -2,7 +2,7 @@ export const m = {
   // SideMenu.vue
   Dashboard: '대시보드',
   General: '기본설정',
-  User: '사용자',
+  User: '회원정보',
   Announcement: '공지사항',
   System_Config: '시스템 설정',
   Judge_Server: '채점 서버',
@@ -19,12 +19,12 @@ export const m = {
   Import_User: '일괄 회원등록 (.csv)',
   Generate_User: '일괄 회원생성',
   // User.vue-dialog
-  User_Info: '사용자',
+  User_Info: '회원정보',
   User_Username: '아이디',
   User_Real_Name: '이름',
   User_Email: '이메일 주소',
   User_New_Password: '새 비밀번호',
-  User_Type: '사용자 유형',
+  User_Type: '회원정보 유형',
   Problem_Permission: '문제 승인',
   Two_Factor_Auth: '2 Factor 인증',
   Is_Disabled: '비활성화',

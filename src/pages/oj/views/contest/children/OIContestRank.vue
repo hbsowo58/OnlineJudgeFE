@@ -21,7 +21,7 @@
             <i-switch v-model="showRealName"></i-switch>
           </p>
           <p>
-            <Button type="primary" size="small" @click="downloadRankCSV">{{$t('m.download_csv')}}</Button>
+            <Button v-if="isSuperAdmin" type="primary" size="small"  @click="downloadRankCSV">{{$t('m.download_csv')}}</Button>
           </p>
         </div>
       </Poptip>
@@ -39,7 +39,7 @@
   </Panel>
 </template>
 <script>
-  import { mapActions } from 'vuex'
+  import { mapActions, mapGetters } from 'vuex'
 
   import Pagination from '@oj/components/Pagination'
   import ContestRankMixin from './contestRankMixin'
@@ -160,6 +160,9 @@
           ]
         }
       }
+    },
+    computed:{
+       ...mapGetters(["isSuperAdmin"]),
     },
     mounted () {
       this.contestID = this.$route.params.contestID

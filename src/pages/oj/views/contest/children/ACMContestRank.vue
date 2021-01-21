@@ -27,7 +27,7 @@
             </p>
           </template>
           <template>
-            <Button type="primary" size="small" @click="downloadRankCSV">{{$t('m.download_csv')}}</Button>
+            <Button type="primary"  v-if="isSuperAdmin" size="small" @click="downloadRankCSV">{{$t('m.download_csv')}}</Button>
           </template>
         </div>
       </Poptip>
@@ -59,6 +59,9 @@
       Pagination
     },
     mixins: [ContestRankMixin],
+     computed:{
+       ...mapGetters(["isSuperAdmin"]),
+    },
     data () {
       return {
         total: 0,
