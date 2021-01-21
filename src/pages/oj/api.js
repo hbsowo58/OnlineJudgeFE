@@ -337,6 +337,25 @@ export default {
       }
     })
   },
+
+  // 비밀글 처리 
+  secretBoard(board_id, type){
+    return ajax('board-secret', 'put', {
+      data:{
+        board_id,
+        type
+      }
+    })
+  },
+
+  secretComment(comment_id, type){
+    return ajax('comment-secret', 'put', {
+      data:{
+        comment_id,
+        type
+      }
+    })
+  }
 }
 
 /**

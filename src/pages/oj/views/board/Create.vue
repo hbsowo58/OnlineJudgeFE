@@ -52,7 +52,7 @@ export default {
       // console.log(this.board);
       this.title = this.board.board.title;
       this.content = this.board.board.content;
-      console.log(this.isSuperAdmin);
+      // console.log(this.isSuperAdmin);
       if (
         !this.isSuperAdmin &&
         this.board.board.created_by !== this.user.profile.user.id

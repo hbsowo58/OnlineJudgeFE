@@ -22,8 +22,30 @@
 
         <el-table-column prop="title" label="제목" align="left">
           <template slot-scope="scope">
-            <span style="padding-left:30px;"
-              >{{ scope.row.title }} <span v-if="scope.row.board.length">[{{ scope.row.board.length }}]</span></span
+    
+            <span
+              style="padding-left:30px;"
+              v-if="scope.row.flag == 3 && (isSuperAdmin || scope.row.created_by == user.profile.user.id)"
+              >{{ scope.row.title }}
+              <span
+                v-if="
+                  scope.row.board.length && getCommentCount(scope.row.board)
+                "
+                >[{{ getCommentCount(scope.row.board) }}]</span
+              >
+              🔒</span
+            >
+            <span style="padding-left:30px;" v-else-if="scope.row.flag == 3"
+              >비공개 글입니다. 🔒</span
+            >
+            <span v-else style="padding-left:30px;"
+              >{{ scope.row.title }}
+              <span
+                v-if="
+                  scope.row.board.length && getCommentCount(scope.row.board)
+                "
+                >[{{ getCommentCount(scope.row.board) }}]</span
+              ></span
             >
           </template>
         </el-table-column>
@@ -88,7 +110,7 @@
 <script>
 import time from "@/utils/time";
 import api from "@oj/api";
-import { mapState } from "vuex";
+import { mapGetters, mapState } from "vuex";
 // import data from '../data'
 export default {
   name: "Read",
@@ -108,9 +130,11 @@ export default {
     // if(data.indexOf() < -1){
     //   this.$router.push("/");
     // }
+    console.log(this.user.profile.user.id);
   },
   computed: {
-    ...mapState(["user"])
+    ...mapState(["user"]),
+    ...mapGetters(["isSuperAdmin"])
   },
   methods: {
     toLocalTime(data) {
@@ -129,10 +153,10 @@ export default {
         keyword: this.keyword
       });
       const data = Object.entries(response).find(el => el[0] === "data");
-      console.log(data);
+      // console.log(data);
       this.total = data[1]["data"]["total"];
       const result = data[1]["data"]["results"];
-      console.log(result[0].board.length);
+      // console.log(result[0].board.length);
       this.data = result;
     },
     write() {
@@ -142,13 +166,17 @@ export default {
     },
     detail(id, column, cell, event) {
       // console.log(column.property);
-      if (column.property === "title") {
+
+      if (this.isSuperAdmin || (this.user.profile.user && id.created_by === this.user.profile.user.id )|| (id.flag !== 3 && column.property === "title")) {
         this.$router.push(`/board/${id.id}`);
       }
       // console.log(id);
       // console.log(column);
       // console.log(cell);
       // console.log(event);
+    },
+    getCommentCount(commentList) {
+      return commentList.filter(li => li.flag !== 4).length;
     }
   }
 };

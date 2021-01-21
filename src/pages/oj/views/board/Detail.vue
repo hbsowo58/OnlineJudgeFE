@@ -7,7 +7,18 @@
         <div class="detail_title">질문게시판</div>
         <div class="detail-header-wrapper">
           <div></div>
-          <div class="detail_title" style="text-align:center;margin-left: 15%;">
+          <div
+            v-if="board['board'].flag === 3"
+            class="detail_title"
+            style="text-align:center;margin-left: 15%;"
+          >
+            {{ board["board"].title }} 🔒
+          </div>
+          <div
+            v-else
+            class="detail_title"
+            style="text-align:center;margin-left: 15%;"
+          >
             {{ board["board"].title }}
           </div>
           <div class="detail_subtitle">
@@ -32,6 +43,19 @@
               "
               >수정</el-button
             >
+
+            <el-button
+              @click="secretBoard(board['board'].flag);"
+              v-if="
+                isSuperAdmin ||
+                  (user.profile.user &&
+                    user.profile.user.id === board['board'].created_by)
+              "
+            >
+              <span v-if="board['board'].flag == 3"> 공개 </span>
+              <span v-else> 비공개 </span>
+            </el-button>
+
             <el-button
               @click="deleteBoard"
               v-if="
@@ -60,7 +84,7 @@
               <div style="margin-left:auto;">
                 <el-button
                   class="detail_comment_button"
-                  @click="chageflag(c.id);"
+                  @click="chageflag(c.id, c.comment);"
                   v-if="
                     isSuperAdmin ||
                       (commentIndex !== c.id &&
@@ -69,6 +93,19 @@
                   "
                   >수정</el-button
                 >
+                <el-button
+                  class="detail_comment_button"
+                  @click="secretComment(c.id, c.flag);"
+                  v-if="
+                    isSuperAdmin ||
+                      (commentIndex !== c.id &&
+                        user.profile.user &&
+                        user.profile.user.id === c.created_by)
+                  "
+                >
+                  <span v-if="c.flag == 3"> 공개 </span>
+                  <span v-else> 비공개 </span>
+                </el-button>
                 <!--
                   v-if="user.profile.user.id ===board['board'].created_by"
                 -->
@@ -95,7 +132,22 @@
                 >변경</el-button
               >
             </div>
-            <div>{{ c.comment }}</div>
+            <!-- <span
+              style="padding-left:30px;"
+              v-if="scope.row.flag == 3 && (isSuperAdmin || scope.row.created_by == user.profile.user.id)"
+              >{{ scope.row.title }}
+              <span
+                v-if="
+                  scope.row.board.length && getCommentCount(scope.row.board)
+                "
+                >[{{ getCommentCount(scope.row.board) }}]</span
+              >
+              🔒</span
+            > -->
+
+            <div v-if="c.flag === 3 && (isSuperAdmin ||c.created_by ===user.profile.user.id )">{{ c.comment }} 🔒</div>
+            <div v-else-if="c.flag ===3">비공개 댓글입니다. 🔒</div>
+            <div v-else>{{ c.comment }}</div>
           </div>
         </div>
         <Comment />
@@ -166,18 +218,17 @@ export default {
       // console.log(result);
       // this.POST_COMMENT(result);
     },
-     deleteBoard() {
+    deleteBoard() {
       this.$Modal.confirm({
         content: "게시글을 삭제하시겠습니까?",
         onOk: async () => {
-           await api.deleteBoard(this.$route.params["board_id"]);
+          await api.deleteBoard(this.$route.params["board_id"]);
           this.$router.push({
-          path: "/board"
+            path: "/board"
           });
         },
         onCancel: () => {}
       });
-     
     },
     updateData() {
       this.$router.push(`/create/${this.$route.params["board_id"]}`);
@@ -202,9 +253,10 @@ export default {
         onCancel: () => {}
       });
     },
-    chageflag(id) {
+    chageflag(id, comment) {
       this.flag = true;
       this.commentIndex = id;
+      this.comment = comment;
       // await api.putComment(comment_id, content)
     },
     async changeComment(comment_id) {
@@ -224,6 +276,36 @@ export default {
         onCancel: () => {}
       });
       // console.log(this.comment)
+    },
+    secretBoard(flag) {
+      let type = "";
+      if (flag === 3) type = "normal";
+      else type = "secret";
+      this.$Modal.confirm({
+        content: `해당 게시글을 ${
+          type === "normal" ? "공개" : "비공개"
+        } 처리 하시겠습니까?`,
+        onOk: async () => {
+          await api.secretBoard(this.$route.params["board_id"], type);
+          const reuslt = await this.getBoard(this.$route.params["board_id"]);
+        },
+        onCancel: () => {}
+      });
+    },
+    secretComment(id, flag) {
+      let type = "";
+      if (flag === 3) type = "normal";
+      else type = "secret";
+      this.$Modal.confirm({
+        content: `해당 댓글을 ${
+          type === "normal" ? "공개" : "비공개"
+        } 처리 하시겠습니까?`,
+        onOk: async () => {
+          await api.secretComment(id, type);
+          const reuslt = await this.getBoard(this.$route.params["board_id"]);
+        },
+        onCancel: () => {}
+      });
     }
   }
 };
