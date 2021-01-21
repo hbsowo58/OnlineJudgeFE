@@ -25,7 +25,7 @@
     
             <span
               style="padding-left:30px;"
-              v-if="scope.row.flag == 3 && (isSuperAdmin || scope.row.created_by == user.profile.user.id)"
+              v-if="scope.row.flag == 3 &&user.profile && (isSuperAdmin || scope.row.created_by == user.profile.user.id)"
               >{{ scope.row.title }}
               <span
                 v-if="
@@ -130,7 +130,7 @@ export default {
     // if(data.indexOf() < -1){
     //   this.$router.push("/");
     // }
-    console.log(this.user.profile.user.id);
+    // console.log(this.user.profile.user.id);
   },
   computed: {
     ...mapState(["user"]),
