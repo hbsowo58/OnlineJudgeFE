@@ -47,9 +47,10 @@ router.beforeEach((to, from, next) => {
       // console.log(data[0][1].created_by);
       // 유저 아이디와 비교 + isSuperAdmin일떄 next
       // if(data[1].id )
-    
-      if(data[0][1].flag === 3){
-        if(store.getters.isSuperAdmin || data[0][1].created_by === store.state.user.profile.id){
+      // console.log(data[0][1].created_by);
+      // console.log(store.state.user.profile.user.id);
+      if(data && data[0][1].flag === 3){
+        if(store.getters.isSuperAdmin || data[0][1].created_by === store.state.user.profile.user.id){
           next();
         }else{
           next({
