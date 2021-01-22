@@ -181,13 +181,13 @@ export default [
     {
     path: '/board/:board_id',
     name: 'Detail',
-    meta: {title: 'Detail'},
+    meta: {requiresAuth: true, title: 'Detail'},
     component: Detail
   },
   {
     path: '/board',
     name: 'Board',
-    meta: {title: 'Board'},
+    meta: {requiresAuth: true, title: 'Board'},
     component: Board
   },
   {

@@ -29,8 +29,45 @@ router.beforeEach((to, from, next) => {
       store.commit(types.CHANGE_MODAL_STATUS, {mode: 'login', visible: true})
       next({
         name: 'home'
-      })
-    } else {
+      })  
+    }
+    else if(to.name === "Detail"){
+    (async function(){
+      // console.log(to);
+      // 데이터를 가져와야한다
+      // console.log(to.params.board_id);
+      // console.log(store);  
+      await store.dispatch("getBoard", to.params.board_id)
+      // const reuslt = await this.getBoard(this.$route.params["board_id"]);
+      // console.log(store.state.board);
+      // console.log(store.getters.isSuperAdmin);
+      const data = Object.entries(store.state.board);
+      // console.log(data);
+      // console.log(store.state.user.profile.id);
+      // console.log(data[0][1].created_by);
+      // 유저 아이디와 비교 + isSuperAdmin일떄 next
+      // if(data[1].id )
+    
+      if(data[0][1].flag === 3){
+        if(store.getters.isSuperAdmin || data[0][1].created_by === store.state.user.profile.id){
+          next();
+        }else{
+          next({
+            name: 'Board'
+          })
+        }
+      }else{
+        next();
+      }
+          
+      
+
+    })();
+    }
+     else {
+      //  console.log(to);
+      //  조건 board의 flag를 가져와야 한다.
+      //  console.log(store.state)
       next()
     }
   } else {
